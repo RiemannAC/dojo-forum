@@ -21,3 +21,12 @@
 /yarn-error.log
 
 .byebug_history
+
+# CarrierWave
+/public/uploads
+
+# Facebook
+# /config/facebook.yml
+
+# ActionMailer
+# /config/email.yml
