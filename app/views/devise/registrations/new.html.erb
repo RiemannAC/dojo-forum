@@ -10,6 +10,24 @@
     </div>
 
     <div class="form-group">
+      <%# f.label :intro, "Introduction" %>
+      <%# f.text_area :intro, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%# f.label :avatar, "Avatar" %>
+      <%# f.file_field :avatar %>
+    </div>
+
+    <div class="form-group" >
+      <%# f.label :role, "Privilege" %>
+      <%# f.label :role, "admin" %>
+      <%# radio_button_tag(:role, "admin") %>
+      <%# f.label :role, "norman" %>
+      <%# radio_button_tag(:role, "normal") %>
+    </div>
+
+    <div class="form-group">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
     </div>
@@ -17,7 +35,7 @@
     <div class="form-group">
       <%= f.label :password %>
       <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>( 至少 <%= @minimum_password_length %> 位數密碼 )</em>
       <% end %><br />
       <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
     </div>
