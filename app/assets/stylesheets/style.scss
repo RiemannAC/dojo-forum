@@ -104,10 +104,19 @@ header {
   margin: 20px 16px 16px 8px;
 }
 
-.nav {
+.nav-right {
   float: right;
 }
 
-.nav li {
+.nav-right li {
   display: inline-block;
+  margin: 8px 16px 16px 8px;
+}
+
+/*------ Post Index ------*/
+
+.category-item {
+  float: left;
+  font-size: 16px;
+  margin: 20px 16px 16px 8px;
 }
