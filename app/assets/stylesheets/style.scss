@@ -91,6 +91,17 @@ header {
 
 #logo {
   float: left;  /* 原本圖片尺寸跟父層 header 跑，浮動排列就回復原來尺寸 */
+  height: 50px;
+}
+
+.logo-item {
+  float: left;
+  font-size: 16px;
+}
+
+.logo-item li {
+  display: inline-block;
+  margin: 20px 16px 16px 8px;
 }
 
 .nav {
