@@ -5,5 +5,11 @@ Rails.application.routes.draw do
 
   resources :posts
 
+  resources :users, only: [:show, :edit, :update] do
+    member do
+      get :drafts
+    end
+  end
+
   resources :feeds, only: :index
 end

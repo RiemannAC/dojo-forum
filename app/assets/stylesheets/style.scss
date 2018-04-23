@@ -120,3 +120,38 @@ header {
   font-size: 16px;
   margin: 20px 16px 16px 8px;
 }
+
+/*------ Post New file upload button ------*/
+
+#uploadfile .defaultupload {
+    opacity: 0;                  /* 蓋到 title 待修 */
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+#uploadfile .defaultupload:hover {
+    opacity: 0;
+}
+
+#uploadfile button {
+    position: relative;
+    top: 0;
+    z-index: 1;
+}
+
+.defaultupload select, input[type="file"] {
+height: 45px;
+line-height: 30px;
+}
+
+/*------ Post New radio & checkbox ------*/
+
+input[type=radio] {
+  display: inline-block;  /*  水平排列無效 */
+}
+
+input[type=checkbox], input[type=radio] {
+  margin: 0 10px;
+}
