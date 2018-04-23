@@ -24,7 +24,18 @@
         <div><%= image_tag @post.image, width: 500, height: 300 if @post.image? %></div>
         <br />
         <div class="content"><%= @post.content %></div>
-        <!-- edit destroy button pull-right -->
+        <!-- post edit destroy button -->
+        <% if @post.user == current_user || current_user.admin? %>
+          <div class="post_buttons pull-right">
+            <%= link_to edit_post_path(@post) do %>
+              <i class="fa fa-edit fa-2x"></i>
+            <% end %>
+            <%= link_to post_path(@post), method: :delete, data: { confirm: "Are you sure？" } do %>
+              <i class="fa fa-trash fa-2x"></i>
+            <% end %>
+          </div>
+        <% end %>
+        <!-- post edit destroy button end -->
       </div>
     </div>
 
@@ -39,7 +50,18 @@
 
         <div class="image_bar col-md-10">
           <div class="content"><%= comment.content %></div>
-          <!-- edit destroy button pull-right -->
+          <!-- comment edit destroy button -->
+          <% if comment.user == current_user || current_user.admin? %>
+            <div class="comment_buttons pull-right">
+              <%# link_to 路徑(post, comment_id: comment.id) do %>
+                <%# <i class="fa fa-edit fa-2x"></i> %>
+              <%# end %>
+              <%= link_to post_comment_path(post,comment), method: :delete, data: { confirm: "Are you sure？" } do %>
+                <i class="fa fa-trash fa-2x"></i>
+              <% end %>
+            </div>
+          <% end %>
+          <!-- comment edit destroy button end -->
         </div>
       <% end %>
 
