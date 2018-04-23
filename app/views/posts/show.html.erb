@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <!-- title bar -->
+    <div class="title_bar col-md-12">
+      <div class="col-md-10">
+        <div><%= @post.title %></div>
+      </div>
+      <div class="col-md-2 title_button">
+        <!-- collect_button 路徑待修改 -->
+        <%= link_to "Collect", comments_user_path(current_user), class: "btn btn-sm btn-default" %>
+        <%= link_to "Comment", comments_user_path(current_user), class: "btn btn-sm btn-default" %>
+      </div>
+    </div>
+    &nbsp;
+    <!-- post -->
+    <div class="post_bar col-md-12">
+      <div class="avatar_bar col-md-2">
+        <div><%= image_tag @post.user.avatar, width: 140, height: 140 if @post.user.avatar? %></div>
+        <div class="avatar_name"><%= @post.user.name %></div>
+        <!-- add Friend button -->
+      </div>
+
+      <div class="image_bar col-md-10">
+        <div><%= image_tag @post.image, width: 500, height: 300 if @post.image? %></div>
+        <br />
+        <div class="content"><%= @post.content %></div>
+        <!-- edit destroy button pull-right -->
+      </div>
+    </div>
+
+    <!-- comments new version -->
+    <div class="comment_bar col-md-12">
+      <% @comments.each do |comment| %>
+        <div class="avatar_bar col-md-2">
+          <div><%= image_tag comment.user.avatar, width: 140, height: 140 if comment.user.avatar? %></div>
+          <div class="avatar_name"><%= comment.user.name %></div>
+          <!-- add Friend button -->
+        </div>
+
+        <div class="image_bar col-md-10">
+          <div class="content"><%= comment.content %></div>
+          <!-- edit destroy button pull-right -->
+        </div>
+      <% end %>
+
+      <!-- comment 分頁 -->
+      <div class="text-center">
+        <%= paginate @comments %>
+      </div>
+    </div>
+
+    <!-- 回文區 -->
+    <div class=id="comments">
+      <div class="col-sm-12">
+        <%= form_for [@post, @comment] do |f| %>
+          <div class="form-group">
+            <%= f.text_area :content, placeholder: "Add comment！", class: "form-control bg-light", rows: "10" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "Submit", class: "btn btn-default" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

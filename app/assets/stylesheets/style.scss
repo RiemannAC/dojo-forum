@@ -155,3 +155,64 @@ input[type=radio] {
 input[type=checkbox], input[type=radio] {
   margin: 0 10px;
 }
+
+/*------ Post Show  ------*/
+
+.title_bar {
+  color: #333;
+  background-color: #efefef;
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin: 0 20px 0 0;         /* 下方拉不開 */
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.title_button  a {            /*------ <%= link_to ~, class: "btn btn-default" %> 再外掛樣式，解決使用 post 動作且按鈕不變型  ------*/
+  display: inline-block;
+  font-size: 16px;
+  color: #000;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 5px 5px;
+  text-transform: capitalize;
+}
+
+.title_button  a:hover {
+  background: #666;
+  color: #fff;
+  /* 過場效果關閉
+  -webkit-transition: all .4s linear;
+  -moz-transition: all .4s linear;
+  -ms-transition: all .4s linear;
+  -o-transition: all .4s linear;
+  transition: all .4s linear;
+  */
+}
+
+.post_bar {
+  margin: 8px 0;
+}
+
+.comment_bar {
+  margin: 8px 0;
+  background-color: #efefef;
+}
+
+.avatar_bar {
+  display: block;   /* 物件要分開，不然垂直排列無效 */
+  text-align: center;
+}
+
+.avatar_name {
+  color: #333;
+  text-transform: capitalize;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.content {
+  color: #767676;
+}

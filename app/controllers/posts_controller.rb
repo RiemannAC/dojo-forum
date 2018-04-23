@@ -34,6 +34,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comments = @post.comments.includes(:user).page(params[:page]).per(8)
+    @comment = Comment.new
   end
 
   private
