@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show]
+
   def index
     @categories = Category.all
     @posts = Post.page(params[:page]).per(10)
@@ -23,8 +25,7 @@ class PostsController < ApplicationController
     else
       @post.status = "public"
       if @post.save
-        # redirect_to post_path(@post)
-        redirect_to root_path
+        redirect_to post_path(@post)
       else
         flash.now[:alert] = @post.errors.full_messages.to_sentence
         render :new
@@ -33,7 +34,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    
   end
 
   private
@@ -41,6 +41,10 @@ class PostsController < ApplicationController
   # permit an array with strong parameters
   def post_params
     params.require(:post).permit(:title, :content, :image, :status, :authority, category_ids: [])
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 
 end
