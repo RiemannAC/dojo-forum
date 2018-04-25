@@ -3,11 +3,20 @@ class PostsController < ApplicationController
 
   def index
     @categories = Category.all
-    if params[:category_id]
-      @category = Category.find(params[:category_id])
-      @posts = @category.posts.are_public?.page(params[:page]).per(10)
-    else
-      @posts = Post.are_public?.page(params[:page]).per(10)
+    if current_user            # 已登入使用者 public post & are_viewable? check
+      if params[:category_id]  # 有分類 post
+        @category = Category.find(params[:category_id])
+        @posts = @category.posts.are_viewable?(current_user).are_public?.includes(:comments).page(params[:page]).per(20)
+      else                     # 無分類 post
+        @posts = Post.are_viewable?(current_user).are_public?.includes(:comments).page(params[:page]).per(20)
+      end
+    else                       # 未登入使用者 public post & authority all
+      if params[:category_id]  # 有分類 post
+        @category = Category.find(params[:category_id])
+        @posts = @category.posts.are_public?.where(authority: "all").includes(:comments).page(params[:page]).per(20)
+      else                     # 無分類 post
+        @posts = Post.are_public?.where(authority: "all").includes(:comments).page(params[:page]).per(20)
+      end
     end
   end
 
