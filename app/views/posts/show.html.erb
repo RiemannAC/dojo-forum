@@ -21,7 +21,7 @@
       </div>
 
       <div class="image_bar col-md-10">
-        <div><%= image_tag @post.image, width: 500, height: 300 if @post.image? %></div>
+        <div><%= image_tag @post.image, width: 500 if @post.image? %></div>
         <br />
         <div class="content"><%= @post.content %></div>
         <!-- post edit destroy button -->
