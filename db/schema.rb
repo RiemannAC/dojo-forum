@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180423090741) do
+ActiveRecord::Schema.define(version: 20180425134603) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(version: 20180423090741) do
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vieweds", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id", "user_id"], name: "index_vieweds_on_post_id_and_user_id"
+    t.index ["post_id"], name: "index_vieweds_on_post_id"
+    t.index ["user_id"], name: "index_vieweds_on_user_id"
   end
 
 end
