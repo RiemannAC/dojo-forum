@@ -115,10 +115,18 @@ header {
 
 /*------ Post Index ------*/
 
-.category-item {
-  float: left;
+.category_bar {
   font-size: 16px;
   margin: 20px 16px 16px 8px;
+}
+
+.button_set {
+  float: left;
+}
+
+.fixed_width_button {            /* 等長按鈕，注意文字長設 測試上限 或用truncate? */
+  min-width: 80px;
+  max-width: 80px;
 }
 
 /*------ Post New file upload button ------*/

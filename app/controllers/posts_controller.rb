@@ -3,7 +3,12 @@ class PostsController < ApplicationController
 
   def index
     @categories = Category.all
-    @posts = Post.page(params[:page]).per(10)
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @posts = @category.posts.are_public?.page(params[:page]).per(10)
+    else
+      @posts = Post.are_public?.page(params[:page]).per(10)
+    end
   end
 
   def new
