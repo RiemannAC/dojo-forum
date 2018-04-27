@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  before_create :generate_authentication_token
+
   has_many :posts, dependent: :destroy
 
   has_many :comments, dependent: :destroy
@@ -17,4 +19,9 @@ class User < ApplicationRecord
   def admin?
     self.role == "admin"
   end
+
+  def generate_authentication_token
+     self.authentication_token = Devise.friendly_token
+  end
+
 end
