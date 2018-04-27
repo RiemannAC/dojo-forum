@@ -86,9 +86,29 @@ class Api::V1::PostsController < ApiController
     end
   end
 
+  def create
+    # @user = User.find_by_id(9)  # 測試用
+    # @post = @user.posts.build(post_params) # 測試用
+    @post = current_user.posts.build(post_params)
+    if @post.save
+      render json: {
+        message: "Post has been created!",
+        result: @post
+      }
+    else
+      render json: {
+        errors: @post.errors
+      }
+    end
+  end
+
   private
 
   def set_post
     @post = Post.find_by(id: params[:id])
+  end
+
+  def post_params
+    params.permit(:title, :content, :image, :status, :authority, category_ids: [])
   end
 end
