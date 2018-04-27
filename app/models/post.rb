@@ -34,4 +34,15 @@ class Post < ApplicationRecord
     )
   end
 
+  # show 功能：文章權限判斷，已讀 user 數量計數
+  # 文章權限判斷：對單數 @post
+  def authority?(user)
+    Post.are_viewable?(user).are_public?.include?(self)
+  end
+  # 已知 user 判斷 post 已讀？：@post.seen_by?(user)
+  # 避免重覆計數
+  def seen_by?(user)
+    self.viewed_users.include?(user) #show 建立 @post.vieweds => counter_cache 計數器
+  end
+
 end

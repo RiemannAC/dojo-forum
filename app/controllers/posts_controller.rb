@@ -48,8 +48,14 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = @post.comments.includes(:user).page(params[:page]).per(8)
-    @comment = Comment.new
+    if @post.authority?(current_user)
+      @post.vieweds.create(user: current_user) unless @post.seen_by?(current_user)
+      @comments = @post.comments.includes(:user).page(params[:page]).per(8)
+      @comment = Comment.new
+    else
+      flash[:alert] = "Not Allowed!"
+      redirect_to posts_path
+    end
   end
 
   def update
