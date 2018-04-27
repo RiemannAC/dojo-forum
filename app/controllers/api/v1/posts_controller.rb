@@ -102,12 +102,33 @@ class Api::V1::PostsController < ApiController
     end
   end
 
+  def update
+    if @post.update(post_params)
+      render json: {
+        message: "Post updated successfully!",
+        result: @post
+      }
+    else
+      render json: {
+        errors: @post.errors
+      }
+    end
+  end
+
+  def destroy
+    @post.destroy
+    render json: {
+      message: "Post destroy successfully!"
+    }
+  end
+
   private
 
   def set_post
     @post = Post.find_by(id: params[:id])
   end
 
+  # no require(:post)
   def post_params
     params.permit(:title, :content, :image, :status, :authority, category_ids: [])
   end
