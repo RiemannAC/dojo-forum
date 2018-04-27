@@ -129,6 +129,27 @@ header {
   max-width: 80px;
 }
 
+.index_msg {
+  text-align: center;
+}
+
+.post_title {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.replies_count {
+  border: 1px solid #333;
+  border-radius: 3px;
+  background-color: #eee;
+  text-align: center;
+  font-color: #939393;
+  padding: 3px 0;
+  width: 25%;
+  margin: 0 auto;
+}
+
 /*------ Post New file upload button ------*/
 
 #uploadfile .defaultupload {
