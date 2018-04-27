@@ -18,17 +18,38 @@ class Api::V1::PostsController < ApiController
         @posts = Post.are_public?.where(authority: "all").includes(:comments).page(params[:page]).per(20)
       end
     end
-    render json: {
-      data: @posts.map do |post|
-        {
-          title: post.title,
-          content: post.content,
-          authority: post.authority,
-          status: post.status,
-          image: post.image
-        }
-      end
-    }
+
+    # 帶分類測試網址 DNS/api/v1/posts?category_id=1
+    if params[:category_id]
+      render json: {
+        category:
+          {
+            name: @category.name
+          },
+        posts_data: @posts.map do |post|
+          {
+            title: post.title,
+            content: post.content,
+            authority: post.authority,
+            status: post.status,
+            image: post.image
+          }
+        end
+      }
+    else
+      render json: {
+        message: "測試分類網址 https://www.riemann.xyz/api/v1/posts?category_id=1",
+        posts_data: @posts.map do |post|
+          {
+            title: post.title,
+            content: post.content,
+            authority: post.authority,
+            status: post.status,
+            image: post.image
+          }
+        end
+      }
+    end
   end
 
   def show
