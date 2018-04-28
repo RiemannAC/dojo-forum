@@ -87,8 +87,6 @@ class Api::V1::PostsController < ApiController
   end
 
   def create
-    # @user = User.find_by_id(9)  # 測試用
-    # @post = @user.posts.build(post_params) # 測試用
     @post = current_user.posts.build(post_params)
     if @post.save
       render json: {
