@@ -245,3 +245,33 @@ input[type=checkbox], input[type=radio] {
 .content {
   color: #767676;
 }
+
+/*------ Feeds Index  ------*/
+
+.count_bar {
+  margin: 25px 0;
+  padding: 50px 0;
+  background-color: #f3f3f3;
+}
+
+.feeds_count {
+  border: 1px solid #333;
+  border-radius: 3px;
+  background-color: #fff;
+  text-align: center;
+  font-color: #939393;
+  padding: 3px 0;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.box {
+  width: 60%;                /*------ 下底線長度縮短  ------*/
+  margin: 0 auto;
+}
+
+.bottom_line {
+  border-bottom: 2px solid #b1b1b1;
+  padding-bottom: 5px;
+
+}
