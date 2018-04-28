@@ -93,6 +93,24 @@ class PostsController < ApplicationController
     end
   end
 
+  # 失敗待修
+  def edit_comment
+    # set_post 和 comments_controller 不一樣 看 URI Pattern
+    @post = Post.find(params[:id])
+    # post_id = params[:post_id]
+    # @post = Post.find(params[:post_id])
+    @comment = @post.comments.find_by(id: params[:comment_id])# (comment_id: comment_id)
+    # comment_id = params[:comment_id]
+    # @comment = @post.comments.where(id: :comment_id)
+    if @comment.update(comment_params)
+      flash[:notice] = "Comment already updated!"
+      redirect_to post_path(@post)
+    else
+      flash[:alert] = @comment.errors.full_messages.to_sentence
+      render :edit_comment
+    end
+  end
+
   private
 
   # permit an array with strong parameters
@@ -102,6 +120,19 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  # 失敗待修
+  def comment_params
+    # params.require.(:post, :comment).permit(:content)
+    # params.require.(:post).permit(:content)
+    # params.require.(:edit_comment).permit(:comment, :post, :content)
+    # params.permit(:content) # 自動 show 出 "Comment already updated!"
+    # params.require(:comment).permit(:content) # param is missing or the value is empty: comment
+    # params.require.(:comment, :post).permit(:content) # wrong number of arguments (given 0, expected 1)
+    # params.require.(:comment).permit(:content).permit(:post)
+    # params.require.(:comment).require(:post).permit(:content)
+    params.require.(:comment).permit(:post, :content)
   end
 
 end

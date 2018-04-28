@@ -40,28 +40,29 @@
     </div>
 
     <!-- comments new version -->
-    <div class="comment_bar col-md-12">
+    <div class="col-md-12">
       <% @comments.each do |comment| %>
-        <div class="avatar_bar col-md-2">
-          <div><%= image_tag comment.user.avatar, width: 140, height: 140 if comment.user.avatar? %></div>
-          <div class="avatar_name"><%= comment.user.name %></div>
-          <!-- add Friend button -->
-        </div>
+        <div class="comment_bar col-md-12"><!-- 內包不然會重疊 -->
+          <br />
+          <div class="avatar_bar col-md-2">
+            <div><%= image_tag comment.user.avatar, width: 140, height: 140 if comment.user.avatar? %></div>
+            <div class="avatar_name"><%= comment.user.name %></div>
+            <!-- add Friend button -->
+          </div>
 
-        <div class="image_bar col-md-10">
-          <div class="content"><%= comment.content %></div>
-          <!-- comment edit destroy button -->
-          <%# if comment.user == current_user || current_user.admin? %>
-            <div class="comment_buttons pull-right">
-              <%# link_to 路徑(post, comment_id: comment.id) do %>
-                <%# <i class="fa fa-edit fa-2x"></i> %>
-              <%# end %>
-              <%# link_to post_comment_path(post,comment), method: :delete, data: { confirm: "Are you sure？" } do %>
-              <%#  <i class="fa fa-trash fa-2x"></i> %>
-              <%# <% end %>
-            </div>
-          <%# end %>
-          <!-- comment edit destroy button end -->
+          <div class="image_bar col-md-10">
+            <div class="content"><%= comment.content %></div>
+            <!-- comment edit destroy button -->
+            <% if comment.user == current_user || current_user.admin? %>
+              <div class="comment_buttons pull-right">
+                <%# link_to edit_comment_post_path(@post, comment_id: comment.id), remote: true %>
+                <%= link_to post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure？" } do %>
+                  <i class="fa fa-trash fa-2x"></i>
+                <% end %>
+              </div>
+            <% end %>
+            <!-- comment edit destroy button end -->
+          </div><!-- image_bar end -->
         </div>
       <% end %>
 

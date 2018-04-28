@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:create]
+  before_action :set_post, only: [:create, :destroy]
+  before_action :set_comment, only: [:destroy]
 
   def create
     @comment = @post.comments.build(comment_params)
@@ -12,6 +13,11 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment.destroy
+    redirect_to post_path(@post)
+  end
+
   private
 
   def set_post
@@ -21,4 +27,9 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content)
   end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
 end
