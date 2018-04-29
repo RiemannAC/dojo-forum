@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :comments, :edit, :update, :drafts]
+  before_action :set_user, only: [:show, :comments, :edit, :update, :drafts, :collections]
 
   def show
     @posts = @user.posts.are_viewable?(current_user).are_public?
@@ -16,6 +16,10 @@ class UsersController < ApplicationController
 
   def drafts
     @drafts = @user.posts.where(status: "draft")
+  end
+
+  def collections
+    @collections = @user.collected_posts.includes(:collected_users)
   end
 
   private
