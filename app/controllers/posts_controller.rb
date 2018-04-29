@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :collect, :uncollect]
 
   def index
     @categories = Category.all
@@ -109,6 +109,18 @@ class PostsController < ApplicationController
       flash[:alert] = @comment.errors.full_messages.to_sentence
       render :edit_comment
     end
+  end
+
+  def collect
+    @post.collections.create(user: current_user)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def uncollect
+    # @collect = @post.collections.find_by(user: current_user)
+    @collect = Collection.where(post: @post, user: current_user)
+    @collect.destroy_all
+    redirect_back(fallback_location: root_path)
   end
 
   private
