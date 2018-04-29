@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :comments, :edit, :update]
+  before_action :set_user, only: [:show, :comments, :edit, :update, :drafts]
 
   def show
     @posts = @user.posts.are_viewable?(current_user).are_public?
@@ -12,6 +12,10 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     redirect_to user_path(@user)
+  end
+
+  def drafts
+    @drafts = @user.posts.where(status: "draft")
   end
 
   private
