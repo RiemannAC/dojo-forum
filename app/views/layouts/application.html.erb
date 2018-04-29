@@ -32,9 +32,9 @@
           </ul>
 
           <ul class="nav-right">
-            <li><!-- 頭像連結個人頁面 -->
+            <li><!-- 頭像連結個人頁面 profile -->
               <% if current_user %>
-                <%= link_to root_path(current_user) do %>
+                <%= link_to user_path(current_user) do %>
                   <%= image_tag current_user.avatar, height: 50, width: 50 if current_user.avatar? %>
                 <% end %>
               <% end %>
