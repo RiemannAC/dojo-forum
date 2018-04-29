@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     member do
       get :edit_comment
+      post :collect
+      post :uncollect
     end
   end
 
