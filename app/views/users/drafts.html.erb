@@ -36,26 +36,17 @@
   <div class="row">
     <table class="table table-hover">
       <tbody>
-        <% @posts.each do |post| %>
+        <% @drafts.each do |post| %>
           <tr>
-            <td class="post_title" data-link="<%= post_path(post) %>"><%= post.title %></td>
-            <td class="post_title" data-link="<%= post_path(post) %>">Published</td>
-            <td class="post_title" data-link="<%= post_path(post) %>"><%= post.updated_at.strftime("%Y-%m-%d") %></td>
+            <td class="post_title"><%= post.title %></td>
+            <td class="post_title">Draft</td>
+            <td class="post_title"><%= post.updated_at.strftime("%Y-%m-%d") %></td>
             <td>
-              <%# render partial: "shared/buttons", locals: { type: "Post", post: post } %>
+              <!-- edit button -->
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <% if @user == current_user %>
-      <%= link_to "New Post", new_post_path, class: "btn btn-default" %>
-    <% end %>
   </div>
 </div>
-
-<script>
-  $("td[data-link]").click(function() {
-    window.location = $(this).data("link")
-  })
-</script>
