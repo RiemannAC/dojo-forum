@@ -293,3 +293,26 @@ input[type=checkbox], input[type=radio] {
 .profile_bottom {
   height: 20%;             /*------ 無效待修正  ------*/
 }
+
+/*------ User Comments  ------*/
+
+.post {
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 10px;
+}
+
+.post_top {
+  margin-left: 15px;
+}
+
+.comment {
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #fff;
+  font-color: #939393;
+  padding: 10px 5px;
+  width: 25%;
+  margin: 10px 15px 0;
+}
+

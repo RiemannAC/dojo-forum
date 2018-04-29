@@ -1,1 +1,55 @@
-<h2>comments</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="user_profile col-md-12">
+      <br />
+
+      <div class="avatar_bar col-md-2">
+        <%= link_to user_path(@user) do %>
+          <%= image_tag @user.avatar, width: 140, height: 140 if @user.avatar? %>
+          <div class="avatar_name"><%= @user.name %></div>
+        <% end %>
+      </div>
+      <div class="profile_right col-md-10">
+        <div class="profile_top">
+          <div class="content"><%= @user.intro %></div>
+        </div>
+        <div class="profile_bottom">
+          <% if @user == current_user %>
+            <div class="title_button pull-right">
+              <%= link_to "Edit", edit_user_path(@user), class: "btn btn-default" %>
+            </div>
+          <% else %>
+              <!-- friend link button -->
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<br />
+
+<%= render partial: "shared/navtab", locals: { user: @user } %>
+
+<br />
+<div class="container">
+  <div class="row">
+    <% @comments.each do |comment| %>
+      <div class="col-md-12">
+        <div class="post col-md-10" data-link="<%= post_path(comment.post) %>">
+          <div class="post_top post_title"><%= comment.post.title %></div>
+          <div class="comment content"><%= comment.content %></div>
+        </div>
+        <div class="col-md-2">
+          <!-- edit button -->
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $("div[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
+</script>

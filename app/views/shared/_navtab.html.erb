@@ -3,9 +3,15 @@
     <div class="col-md-12">
       <ul class="nav nav-tabs">
 
+        <li role="presentation"><!-- class="active" -->
+          <%= link_to_unless_current "My Post", user_path(user) do %>
+            <%= link_to "My Post", user_path(user) %>
+          <% end %>
+        </li>
+
         <li role="presentation">
-          <%= link_to_unless_current "My Post", user_path(user), class: "nav-link" do %>
-            <%= link_to "My Post", user_path(user), class: "nav-link active" %>
+          <%= link_to_unless_current "My Comment", comments_user_path(user) do %>
+            <%= link_to "My Comment", comments_user_path(user) %>
           <% end %>
         </li>
 
