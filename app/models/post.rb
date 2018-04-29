@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   has_many :viewed_users, through: :vieweds, source: :user
 
   has_many :collections, dependent: :destroy
-  has_many :collect_users, through: :collections, source: :user
+  has_many :collected_users, through: :collections, source: :user
 
   mount_uploader :image, ImageUploader
 
@@ -46,6 +46,10 @@ class Post < ApplicationRecord
   # 避免重覆計數
   def seen_by?(user)
     self.viewed_users.include?(user) #show 建立 @post.vieweds => counter_cache 計數器
+  end
+
+  def is_collected?(user)
+    self.collected_users.include?(user)
   end
 
 end

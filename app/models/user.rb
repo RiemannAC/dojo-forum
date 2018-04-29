@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :viewed_posts, through: :vieweds, source: :post
 
   has_many :collections, dependent: :destroy
-  has_many :collect_posts, through: :collections, source: :post
+  has_many :collected_posts, through: :collections, source: :post
 
   mount_uploader :avatar, AvatarUploader
 
