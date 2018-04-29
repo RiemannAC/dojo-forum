@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :comments]
+  before_action :set_user, only: [:show, :comments, :edit]
 
   def show
     @posts = @user.posts.are_viewable?(current_user).are_public?
@@ -9,10 +9,19 @@ class UsersController < ApplicationController
     @comments = @user.comments.includes(:post)
   end
 
+  def update
+    @user.update(user_params)
+    redirect_to user_path(@user)
+  end
+
   private
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :intro, :avatar)
   end
 
 end
