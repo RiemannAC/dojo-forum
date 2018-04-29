@@ -193,9 +193,7 @@ input[type=checkbox], input[type=radio] {
   font-size: 22px;
   font-weight: bold;
   text-transform: capitalize;
-  margin: 0 20px 0 0;         /* 下方拉不開 */
   padding: 15px;
-  border-radius: 10px;
 }
 
 .title_button  a {            /*------ <%= link_to ~, class: "btn btn-default" %> 再外掛樣式，解決使用 post 動作且按鈕不變型  ------*/
@@ -206,18 +204,19 @@ input[type=checkbox], input[type=radio] {
   border-radius: 5px;
   padding: 5px 5px;
   text-transform: capitalize;
+/*  
+  float: right;    右拉，記得加 clearfix，找相關使用這個的元素
+*/
 }
 
 .title_button  a:hover {
   background: #666;
   color: #fff;
-  /* 過場效果關閉
   -webkit-transition: all .4s linear;
   -moz-transition: all .4s linear;
   -ms-transition: all .4s linear;
   -o-transition: all .4s linear;
   transition: all .4s linear;
-  */
 }
 
 .post_bar {
