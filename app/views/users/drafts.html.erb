@@ -41,8 +41,17 @@
             <td class="post_title"><%= post.title %></td>
             <td class="post_title">Draft</td>
             <td class="post_title"><%= post.updated_at.strftime("%Y-%m-%d") %></td>
-            <td>
-              <!-- edit button -->
+            <td><!-- edit button -->
+              <% if post.user == current_user || current_user.admin? %>
+                <div class="buttons">
+                  <%= link_to edit_post_path(post) do %>
+                    <i class="fa fa-edit fa-2x"></i>
+                  <% end %>
+                  <%= link_to post_path(post), method: :delete, data: { confirm: "Are you sure？" } do %>
+                    <i class="fa fa-trash fa-2x"></i>
+                  <% end %>
+                </div>
+              <% end %>
             </td>
           </tr>
         <% end %>
