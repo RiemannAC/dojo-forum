@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :comments, :edit]
+  before_action :set_user, only: [:show, :comments, :edit, :update]
 
   def show
     @posts = @user.posts.are_viewable?(current_user).are_public?
