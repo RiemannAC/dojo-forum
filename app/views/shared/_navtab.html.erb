@@ -1,24 +1,30 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-tabs"><!-- 樣式待處理 -->
 
         <li role="presentation"><!-- class="active" -->
-          <%= link_to_unless_current "My Post", user_path(user) do %>
-            <%= link_to "My Post", user_path(user) %>
-          <% end %>
+          <%# link_to_unless_current "My Post", user_path(user) do %>
+          <%= link_to "My Post", user_path(user) %>
+          <%# end %>
         </li>
 
         <li role="presentation">
-          <%= link_to_unless_current "My Comment", comments_user_path(user) do %>
-            <%= link_to "My Comment", comments_user_path(user) %>
-          <% end %>
+          <%# link_to_unless_current "My Comment", comments_user_path(user) do %>
+          <%= link_to "My Comment", comments_user_path(user) %>
+          <%# end %>
         </li>
 
         <li role="presentation">
-          <%= link_to_unless_current "My Draft", drafts_user_path(user) do %>
-            <%= link_to "My Draft", drafts_user_path(user) %>
-          <% end %>
+          <%# link_to_unless_current "My Collection", collections_user_path(user) do %>
+          <%= link_to "My Collection", collections_user_path(user) %>
+          <%# end %>
+        </li>
+
+        <li role="presentation">
+          <%# link_to_unless_current "My Draft", drafts_user_path(user) do %>
+          <%= link_to "My Draft", drafts_user_path(user) %>
+          <%# end %>
         </li>
 
       </ul>
