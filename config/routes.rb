@@ -40,4 +40,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :categories
+    resources :users, only: [:index, :update]
+
+    root "categories#index"
+  end
+
 end
