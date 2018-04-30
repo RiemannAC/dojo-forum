@@ -27,6 +27,12 @@
           <%# end %>
         </li>
 
+        <li role="presentation">
+          <%# link_to_unless_current "My Friend", friends_user_path(user) do %>
+          <%= link_to "My Friend", friends_user_path(user) %>
+          <%# end %>
+        </li>
+
       </ul>
     </div>
   </div>
