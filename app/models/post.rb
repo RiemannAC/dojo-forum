@@ -3,7 +3,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  has_many :category_posts
+  has_many :category_posts, dependent: :destroy # 關係刪除才能，分類空時才能刪除
   has_many :categories, through: :category_posts
 
   has_many :comments, dependent: :destroy

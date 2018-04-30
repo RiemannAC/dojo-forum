@@ -1,5 +1,5 @@
 class Admin::CategoriesController < Admin::BaseController
-  before_action :set_category, only: [:update]
+  before_action :set_category, only: [:update, :destroy]
 
   def index
     @categories = Category.all
@@ -28,6 +28,16 @@ class Admin::CategoriesController < Admin::BaseController
     else
       @categories = Category.all
       render :index
+    end
+  end
+
+  def destroy
+    if @category.destroy
+      flash[:notice] = "Category was successfully deleted!"
+      redirect_to admin_categories_path
+    else
+      flash[:alert] = @category.errors.full_messages.to_sentence
+      redirect_to admin_categories_path
     end
   end
 
