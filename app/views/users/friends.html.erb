@@ -1,0 +1,107 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="user_profile col-md-12">
+      <br />
+
+      <div class="avatar_bar col-md-2">
+        <%= link_to user_path(@user) do %>
+          <%= image_tag @user.avatar, width: 140, height: 140 if @user.avatar? %>
+          <div class="avatar_name"><%= @user.name %></div>
+        <% end %>
+      </div>
+      <div class="profile_right col-md-10">
+        <div class="profile_top">
+          <div class="content"><%= @user.intro %></div>
+        </div>
+        <div class="profile_bottom">
+          <% if @user == current_user %>
+            <div class="title_button pull-right">
+              <%= link_to "Edit", edit_user_path(@user), class: "btn btn-default" %>
+            </div>
+          <% else %>
+              <!-- friend link button -->
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<br />
+
+<%= render partial: "shared/navtab", locals: { user: @user } %>
+
+<br />
+<div class="container-fluid">
+  <h3 class="text-center">
+    Waiting for response
+  </h3>
+  <div class="row" id="wait-friend">
+    <% @request_friends.each do |user| %>
+      <div class="avatar_bar col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
+        <%= link_to user_path(user) do %>
+          <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
+          <div class="avatar_name"><%= user.name %></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="container-fluid">
+  <h3 class="text-center text-white">
+    Friendship request
+  </h3>
+  <div class="row" id="unaccept-friend">
+    <% @inverse_request_friends.each do |user| %>
+      <% if user !=  current_user %>
+        <% unless current_user.friend?(user) %><!-- 除非真朋友關系，不然就 -->
+
+          <% if current_user.inverse_request_friend?(user) %>
+            <div class="col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
+              <div class="avatar_bar">
+                <%= link_to user_path(user) do %>
+                  <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
+                  <div class="avatar_name"><%= user.name %></div>
+                <% end %>
+              </div>
+
+              <div class="friend_button">
+                <%= link_to "Accept", accept_friendship_path(user), class: "btn btn-primary", method: :post %>
+              </div>
+              <br />
+              <div class="friend_button">
+                <%= link_to "Ignore", ignore_friendship_path(user), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+              </div>
+            </div>
+          <% elsif current_user.request_friend?(user) %>
+            <div class="col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
+              <div class="avatar_bar">
+                <%= link_to user_path(user) do %>
+                  <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
+                  <div class="avatar_name"><%= user.name %></div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+        <% end %><!-- unless end -->
+      <% end %><!-- if end -->
+    <% end %><!-- each do end -->
+  </div>
+</div>
+
+<div class="container-fluid">
+  <h3 class="text-center">
+    Friend List
+  </h3>
+  <div class="row" id="friend">
+    <% @friends.each do |user| %>
+      <div class="avatar_bar col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
+        <%= link_to user_path(user) do %>
+          <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
+          <div class="avatar_name"><%= user.name %></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -315,3 +315,27 @@ input[type=checkbox], input[type=radio] {
   margin: 10px 15px 0;
 }
 
+/*------ User Friends  ------*/
+
+/*------  重疊按鈕置中 block 加 margin auto 會和 titile_button 的 inline-block 衝突 ------*/
+.friend_button a {
+  display: block;                
+  margin: 0 auto;
+  width: 80px;
+  font-size: 16px;
+  color: #000;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 5px 5px;
+  text-transform: capitalize;
+}
+
+.friend_button a:hover {
+  background: #666;
+  color: #fff;
+  -webkit-transition: all .4s linear;
+  -moz-transition: all .4s linear;
+  -ms-transition: all .4s linear;
+  -o-transition: all .4s linear;
+  transition: all .4s linear;
+}
