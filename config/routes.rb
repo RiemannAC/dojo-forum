@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :friendships, only: :create
+
   resources :feeds, only: :index
 
   namespace :api, defaults: {format: :json} do
