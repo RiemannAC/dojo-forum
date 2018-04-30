@@ -22,7 +22,13 @@
       <div class="avatar_bar col-md-2">
         <div><%= image_tag @post.user.avatar, width: 140, height: 140 if @post.user.avatar? %></div>
         <div class="avatar_name"><%= @post.user.name %></div>
-        <!-- add Friend button -->
+        <!-- Friend button -->
+        <% if @post.user != current_user && !@post.user.friend?(current_user) && !current_user.request_friend?(@post.user) %>
+          <div class="friend_button">
+            <%= link_to "Friend", friendships_path(friend_id: @post.user), class: "btn btn-primary", method: :post %>
+          </div>
+        <% end %>
+        <!-- Friend button -->
       </div>
 
       <div class="image_bar col-md-10">
@@ -53,6 +59,13 @@
             <div><%= image_tag comment.user.avatar, width: 140, height: 140 if comment.user.avatar? %></div>
             <div class="avatar_name"><%= comment.user.name %></div>
             <!-- add Friend button -->
+            <% if @post.user != current_user && !@post.user.friend?(current_user) && !current_user.request_friend?(@post.user) %>
+              <div class="friend_button">
+                <%= link_to "Friend", friendships_path(friend_id: comment.user), class: "btn btn-primary", method: :post %>
+              </div>
+            <% end %>
+            <!-- add Friend button -->
+            <br />
           </div>
 
           <div class="image_bar col-md-10">

@@ -24,7 +24,6 @@ class UsersController < ApplicationController
 
   def friends
     @request_friends = @user.request_friends
-    # @inverse_request_friends = current_user.inverse_request_friends
     @inverse_request_friends = @user.inverse_request_friends
     @friends = @user.all_friends
   end
