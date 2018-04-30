@@ -1,0 +1,43 @@
+<% if user !=  current_user %>
+  <% unless @user.friend?(user) %><!-- 除非真朋友關系，不然就 -->
+
+    <% if @user.inverse_request_friend?(user) %>
+      <div class="col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
+        <div class="avatar_bar">
+          <%= link_to user_path(user) do %>
+            <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
+            <div class="avatar_name"><%= user.name %></div>
+          <% end %>
+        </div>
+
+        <div class="friend_button">
+          <%= link_to "Accept", accept_friendship_path(user), class: "btn btn-primary", method: :post %>
+        </div>
+        <br />
+        <div class="friend_button">
+          <%= link_to "Ignore", ignore_friendship_path(user), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+        </div>
+      </div>
+    <% end %>
+
+  <% end %><!-- unless end -->
+<% else %>
+  <% if user != @user && !user.friend?(@user)%>
+    <div class="col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
+      <div class="avatar_bar">
+        <%= link_to user_path(user) do %>
+          <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
+          <div class="avatar_name"><%= user.name %></div>
+        <% end %>
+      </div>
+
+      <div class="friend_button">
+        <%= link_to "Accept", accept_friendship_path(user), class: "btn btn-primary", method: :post %>
+      </div>
+      <br />
+      <div class="friend_button">
+        <%= link_to "Ignore", ignore_friendship_path(user), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+      </div>
+    </div>
+  <% end %>
+<% end %><!-- if end -->

@@ -38,12 +38,16 @@
   </h3>
   <div class="row" id="wait-friend">
     <% @request_friends.each do |user| %>
-      <div class="avatar_bar col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
-        <%= link_to user_path(user) do %>
-          <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
-          <div class="avatar_name"><%= user.name %></div>
-        <% end %>
-      </div>
+
+      <% unless @user.friend?(user) %>
+        <div class="avatar_bar col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
+          <%= link_to user_path(user) do %>
+            <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
+            <div class="avatar_name"><%= user.name %></div>
+          <% end %>
+        </div>
+      <% end %>
+      
     <% end %>
   </div>
 </div>
@@ -53,39 +57,11 @@
   </h3>
   <div class="row" id="unaccept-friend">
     <% @inverse_request_friends.each do |user| %>
-      <% if user !=  current_user %>
-        <% unless current_user.friend?(user) %><!-- 除非真朋友關系，不然就 -->
 
-          <% if current_user.inverse_request_friend?(user) %>
-            <div class="col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
-              <div class="avatar_bar">
-                <%= link_to user_path(user) do %>
-                  <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
-                  <div class="avatar_name"><%= user.name %></div>
-                <% end %>
-              </div>
+      <!-- 貼回起點 -->
+      <%= render partial: "shared/friend_item", locals: { user: user } %>
+      <!-- 貼回終點 -->
 
-              <div class="friend_button">
-                <%= link_to "Accept", accept_friendship_path(user), class: "btn btn-primary", method: :post %>
-              </div>
-              <br />
-              <div class="friend_button">
-                <%= link_to "Ignore", ignore_friendship_path(user), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
-              </div>
-            </div>
-          <% elsif current_user.request_friend?(user) %>
-            <div class="col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
-              <div class="avatar_bar">
-                <%= link_to user_path(user) do %>
-                  <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
-                  <div class="avatar_name"><%= user.name %></div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-
-        <% end %><!-- unless end -->
-      <% end %><!-- if end -->
     <% end %><!-- each do end -->
   </div>
 </div>
