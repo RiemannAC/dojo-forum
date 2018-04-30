@@ -339,3 +339,17 @@ input[type=checkbox], input[type=radio] {
   -o-transition: all .4s linear;
   transition: all .4s linear;
 }
+
+.watting_for_response, .friend_list {
+  border-top: 1px solid #acacac;
+  border-bottom: 1px solid #acacac;
+  background-color: #f3f3f3;
+  padding-bottom: 15px;
+}
+
+.friendship_request_area {
+  border-top: 1px solid #acacac;
+  border-bottom: 1px solid #acacac;
+  background-color: #ccc;
+  padding-bottom: 15px;
+}
