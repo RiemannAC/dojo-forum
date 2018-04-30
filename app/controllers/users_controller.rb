@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :comments, :edit, :update, :drafts, :collections]
+  before_action :set_user, only: [:show, :comments, :edit, :update, :drafts, :collections, :friends]
 
   def show
     @posts = @user.posts.are_viewable?(current_user).are_public?
@@ -20,6 +20,12 @@ class UsersController < ApplicationController
 
   def collections
     @collections = @user.collected_posts.includes(:collected_users)
+  end
+
+  def friends
+    @request_friends = @user.request_friends
+    @inverse_request_friends = @user.inverse_request_friends
+    @friends = @user.all_friends
   end
 
   private
