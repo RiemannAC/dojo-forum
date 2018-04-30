@@ -33,4 +33,8 @@ class User < ApplicationRecord
      self.authentication_token = Devise.friendly_token
   end
 
+  def friend?(user)
+    self.friends.include?(user) || self.inverse_friends.include?(user)
+  end
+
 end
