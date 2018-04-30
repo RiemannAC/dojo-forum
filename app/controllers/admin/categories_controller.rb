@@ -1,4 +1,5 @@
 class Admin::CategoriesController < Admin::BaseController
+  before_action :set_category, only: [:update]
 
   def index
     @categories = Category.all
@@ -20,10 +21,24 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
+  def update
+    if @category.update(category_params)
+      flash[:notice] = "Category was successfully updated!"
+      redirect_to admin_categories_path
+    else
+      @categories = Category.all
+      render :index
+    end
+  end
+
   private
 
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def set_category
+    @category = Category.find(params[:id])
   end
 
 end
