@@ -19,7 +19,10 @@
               <%= link_to "Edit", edit_user_path(@user), class: "btn btn-default" %>
             </div>
           <% else %>
-              <!-- friend link button -->
+            <div class="friend_button pull-right"><!-- 此處pull-right強過 CSS 置中設定 -->
+              <%= render partial: "shared/friend_button", locals: { user: @user } %>
+            </div>
+            <!-- friend link button -->
           <% end %>
         </div>
       </div>
@@ -38,31 +41,28 @@
   </h3>
   <div class="row" id="wait-friend">
     <% @request_friends.each do |user| %>
-
-      <% unless @user.friend?(user) %>
-        <div class="avatar_bar col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
-          <%= link_to user_path(user) do %>
-            <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
-            <div class="avatar_name"><%= user.name %></div>
-          <% end %>
+      <%# request_friend(user) %><!-- 45~49行替換此行。helper 用完變置中怪怪der => 沒顯示出來但還是佔位，參數給的不夠？ -->
+      <% unless @user.friend?(user) %><!-- 已成朋友後，不顯示請求 -->
+        <div class="col-md-2" id="user-<%= user.id %>">
+          <%= render partial: "shared/user_item", locals: { user: user } %>
         </div>
       <% end %>
-      
     <% end %>
   </div>
 </div>
+
 <div class="container-fluid friendship_request_area">
   <h3 class="text-center text-white">
     Friendship request
   </h3>
   <div class="row" id="unaccept-friend">
     <% @inverse_request_friends.each do |user| %>
-
-      <!-- 貼回起點 -->
-      <%= render partial: "shared/friend_item", locals: { user: user } %>
-      <!-- 貼回終點 -->
-
-    <% end %><!-- each do end -->
+      <% unless @user.friend?(user) %><!-- 已成朋友後，不顯示請求 -->
+        <div class="col-md-2" id="user-<%= user.id %>">
+          <%= render partial: "shared/user_item", locals: { user: user } %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
@@ -72,11 +72,8 @@
   </h3>
   <div class="row" id="friend">
     <% @friends.each do |user| %>
-      <div class="avatar_bar col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
-        <%= link_to user_path(user) do %>
-          <%= image_tag user.avatar, width: 80, height: 80 if user.avatar? %>
-          <div class="avatar_name"><%= user.name %></div>
-        <% end %>
+      <div class="col-md-2" id="user-<%= user.id %>">
+        <%= render partial: "shared/user_item", locals: { user: user } %>
       </div>
     <% end %>
   </div>

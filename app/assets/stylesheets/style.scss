@@ -320,7 +320,7 @@ input[type=checkbox], input[type=radio] {
 /*------  重疊按鈕置中 block 加 margin auto 會和 titile_button 的 inline-block 衝突 ------*/
 .friend_button a {
   display: block;                
-  margin: 0 auto;
+  margin: 0 auto;  /*------  一, 二行在盒內置中  ------*/
   width: 80px;
   font-size: 16px;
   color: #000;
@@ -345,6 +345,7 @@ input[type=checkbox], input[type=radio] {
   border-bottom: 1px solid #acacac;
   background-color: #f3f3f3;
   padding-bottom: 15px;
+  min-height: 200px;
 }
 
 .friendship_request_area {
@@ -352,6 +353,7 @@ input[type=checkbox], input[type=radio] {
   border-bottom: 1px solid #acacac;
   background-color: #ccc;
   padding-bottom: 15px;
+  min-height: 250px;
 }
 
 /*------ Admin Category  ------*/

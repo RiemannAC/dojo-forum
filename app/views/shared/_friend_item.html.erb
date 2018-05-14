@@ -1,7 +1,9 @@
-<% if user !=  current_user %>
-  <% unless @user.friend?(user) %><!-- 除非真朋友關系，不然就 -->
+<!-- 第一版 當前admin使用者看到的是當頁使用者的視角。另一版本只用在 waiting for response 的 partial -->
+<!-- deadline 前幾小時寫的，冒出什麼封什麼。邏輯不易套用所有朋友分類，維護不易 -->
+<% if user !=  current_user %><!-- 若 變數user 非當前使用者，則… -->
+  <% unless @user.friend?(user) %><!-- 若 變數user 非當頁使用者 真朋友關系，則… -->
 
-    <% if @user.inverse_request_friend?(user) %>
+    <% if @user.inverse_request_friend?(user) %><!-- 若 變數user 屬於當頁使用者 反向假朋友群，則… -->
       <div class="col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
         <div class="avatar_bar">
           <%= link_to user_path(user) do %>
@@ -21,8 +23,8 @@
     <% end %>
 
   <% end %><!-- unless end -->
-<% else %>
-  <% if user != @user && !user.friend?(@user)%>
+<% else %><!-- 若 變數user 為當前使用者，則… -->
+  <% if user != @user && !user.friend?(@user)%><!-- 若 變數user 非當頁使用者，且當頁使用者不屬於變數user真朋友群 -->
     <div class="col-md-2" id="user-<%= user.id %>"><!-- Ajax prepare -->
       <div class="avatar_bar">
         <%= link_to user_path(user) do %>
@@ -40,4 +42,4 @@
       </div>
     </div>
   <% end %>
-<% end %><!-- if end -->
+<% end %><!-- if end

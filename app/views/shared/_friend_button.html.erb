@@ -1,0 +1,11 @@
+<% if user !=  current_user %><!-- 若變數使用者非當前使用者，則… -->
+  <% unless current_user.friend?(user) %><!-- 若變數使用者 不屬於 當前使用者真朋友群，則…(分割) -->
+    <% if current_user.inverse_request_friend?(user) %><!-- 若變數使用者 屬於 當前使用者的反向邀請者 -->
+      <%= link_to "Accept", accept_friendship_path(user), class: "btn btn-primary", method: :post %><br>
+      <%= link_to "Ignore", ignore_friendship_path(user), class: "btn btn-danger", method: :delete %>
+    <% elsif current_user.request_friend?(user) %><!-- 若變數使用者 屬於 當前使用者的邀請者，無顯示按鈕需求 -->
+    <% else %><!-- 非朋友 -->
+      <%= link_to "Friend", friendships_path(friend_id: user), class: "btn btn-primary", method: :post %>
+    <% end %>
+  <% end %>
+<% end %>
