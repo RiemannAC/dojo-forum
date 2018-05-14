@@ -1,40 +1,6 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="user_profile col-md-12">
-      <br />
-
-      <div class="avatar_bar col-md-2">
-        <%= link_to user_path(@user) do %>
-          <%= image_tag @user.avatar, width: 140, height: 140 if @user.avatar? %>
-          <div class="avatar_name"><%= @user.name %></div>
-        <% end %>
-      </div>
-      <div class="profile_right col-md-10">
-        <div class="profile_top">
-          <div class="content"><%= @user.intro %></div>
-        </div>
-        <div class="profile_bottom">
-          <% if @user == current_user %>
-            <div class="title_button pull-right">
-              <%= link_to "Edit", edit_user_path(@user), class: "btn btn-default" %>
-            </div>
-          <% else %>
-            <div class="friend_button pull-right"><!-- 此處pull-right強過 CSS 置中設定 -->
-              <%= render partial: "shared/friend_button", locals: { user: @user } %>
-            </div>
-            <!-- friend link button -->
-          <% end %>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-<br />
-
+<%= render partial: "shared/user_info", locals: { user: @user } %>
 <%= render partial: "shared/navtab", locals: { user: @user } %>
 
-<br />
 <div class="container-fluid watting_for_response">
   <h3 class="text-center">
     Waiting for response
