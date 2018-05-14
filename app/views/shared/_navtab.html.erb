@@ -1,40 +1,25 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <ul class="nav nav-tabs"><!-- 樣式待處理 -->
-
-        <li role="presentation"><!-- class="active" -->
-          <%# link_to_unless_current "My Post", user_path(user) do %>
-          <%= link_to "My Post", user_path(user) %>
-          <%# end %>
+      <ul class="nav nav-tabs">
+        <li role="presentation"<%= 'class=active' if current_page?(user_path) %>><!-- 注意 class=active 括號位置 -->
+          <!-- 注意 active 屬性掛在 lint_to 後面無效 -->
+          <%= link_to "My Post", user_path(user), class: "nav-link bg-light" %>
         </li>
-
-        <li role="presentation">
-          <%# link_to_unless_current "My Comment", comments_user_path(user) do %>
-          <%= link_to "My Comment", comments_user_path(user) %>
-          <%# end %>
+        <li role="presentation"<%= 'class=active' if current_page?(comments_user_path) %>>
+          <%= link_to "My Comment", comments_user_path(user), class: "nav-link bg-light" %>
         </li>
-
-        <li role="presentation">
-          <%# link_to_unless_current "My Collection", collections_user_path(user) do %>
-          <%= link_to "My Collection", collections_user_path(user) %>
-          <%# end %>
+        <li role="presentation"<%= 'class=active' if current_page?(collections_user_path) %>>
+          <%= link_to "My Collect", collections_user_path(user), class: "nav-link bg-light" %>
         </li>
-
-        <li role="presentation">
-          <%# link_to_unless_current "My Draft", drafts_user_path(user) do %>
-          <%= link_to "My Draft", drafts_user_path(user) %>
-          <%# end %>
+        <li role="presentation"<%= 'class=active' if current_page?(drafts_user_path) %>>
+          <%= link_to "My Draft", drafts_user_path(user), class: "nav-link bg-light" %>
         </li>
-
-        <li role="presentation">
-          <%# link_to_unless_current "My Friend", friends_user_path(user) do %>
-          <%= link_to "My Friend", friends_user_path(user) %>
-          <%# end %>
+        <li role="presentation"<%= 'class=active' if current_page?(friends_user_path) %>>
+          <%= link_to "My Friend", friends_user_path(user), class: "nav-link bg-light" %>
         </li>
-
       </ul>
     </div>
   </div>
 </div>
-<br />
+<br/>
