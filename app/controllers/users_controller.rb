@@ -1,31 +1,70 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :comments, :edit, :update, :drafts, :collections, :friends]
+  before_action :set_user, only: [:show, :comments, :update, :drafts, :collections, :friends]
 
   def show
-    @posts = @user.posts.are_viewable?(current_user).are_public?
+    if @user == current_user || current_user.admin?
+      @posts = @user.posts.are_viewable?(current_user).are_public?
+    else
+      flash[:alert] = "Not Allow!"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def comments
-    @comments = @user.comments.includes(:post)
+    if @user == current_user || current_user.admin?
+      @comments = @user.comments.includes(:post)
+    else
+      flash[:alert] = "Not Allow!"
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def edit
+    if @user == current_user || current_user.admin?
+      @user = User.find(params[:id])
+    else
+      flash[:alert] = "Not Allow!"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def update
-    @user.update(user_params)
-    redirect_to user_path(@user)
+    if @user == current_user || current_user.admin?
+      @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      flash[:alert] = "Not Allow!"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def drafts
-    @drafts = @user.posts.where(status: "draft")
+    if @user == current_user || current_user.admin?
+      @drafts = @user.posts.where(status: "draft")
+    else
+      flash[:alert] = "Not Allow!"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def collections
-    @collections = @user.collected_posts.includes(:collected_users)
+    if @user == current_user || current_user.admin?
+      @collections = @user.collected_posts.includes(:collected_users)
+    else
+      flash[:alert] = "Not Allow!"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def friends
-    @request_friends = @user.request_friends
-    @inverse_request_friends = @user.inverse_request_friends
-    @friends = @user.all_friends
+    if @user == current_user || current_user.admin?
+      @request_friends = @user.request_friends
+      @inverse_request_friends = @user.inverse_request_friends
+      @friends = @user.all_friends
+    else
+      flash[:alert] = "Not Allow!"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private
