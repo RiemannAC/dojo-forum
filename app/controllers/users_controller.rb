@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     if @user == current_user || current_user.admin?
-      @posts = @user.posts.are_viewable?(current_user).are_public?
+      @posts = @user.posts.are_viewable?(current_user).are_public?.order(created_at: :desc)
     else
       flash[:alert] = "Not Allow!"
       redirect_back(fallback_location: root_path)
