@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :collections, dependent: :destroy
   has_many :collected_posts, through: :collections, source: :post
 
-  has_many :friendships, -> { where status: true }, dependent: :destroy
+  has_many :friendships, -> {where status: true}, dependent: :destroy
   has_many :friends, through: :friendships
 
   has_many :inverse_friendships, -> {where status: true}, class_name: "Friendship", foreign_key: "friend_id"

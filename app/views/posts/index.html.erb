@@ -38,7 +38,12 @@
         <% @posts.each do |post| %>
           <tr data-link="<%= post_path(post) %>">
             <td><div class="replies_count"><%= post.comments_count %></div></td>
-            <th><div class="post_title"><%= post.title %></div></th>
+            <th>
+              <div>
+                <span class="post_title"><%= post.title %></span>
+                <div class="read"><%= 'Read' if post.seen_by?(current_user) %></div>
+              </div>
+            </th>
             <td><div class="index_msg"><%= post.comments.last.created_at.strftime("%Y-%m-%d") if post.comments.present?  %></div></td>
             <td><div class="index_msg"><i class="fa fa-eye"></i> <%= post.viewed_count %></div></td>
           </tr>
@@ -57,3 +62,4 @@
     window.location = $(this).data("link")
   })
 </script>
+<%# 'class=active' if current_page?(user_path) %>
