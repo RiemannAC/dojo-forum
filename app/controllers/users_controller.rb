@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def comments
     if @user == current_user || current_user.admin?
-      @comments = @user.comments.includes(:post)
+      @comments = @user.comments.order(created_at: :desc).includes(:post)
     else
       flash[:alert] = "Not Allow!"
       redirect_back(fallback_location: root_path)
