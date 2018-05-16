@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
   def collections
     if @user == current_user || current_user.admin?
-      @collections = @user.collected_posts.includes(:collected_users)
+      @collections = @user.collected_posts.order("collections.created_at desc").includes(:collected_users)
     else
       flash[:alert] = "Not Allow!"
       redirect_back(fallback_location: root_path)
