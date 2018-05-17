@@ -9,54 +9,68 @@
           <%= f.text_area :content, class: "form-control bg-light", rows:"10" %>
         </div>
 
-        <!-- File Upload botton -->
-        <!-- <div class="form-group"> -->
-          <%# f.file_field :image %>
-        <!-- </div> -->
-        <!-- <br /> -->
-        <!-- File Upload botton end -->
+        <!-- Upload_button -->
         <label class="btn btn-default upload_button">
           File
-          <spna style="display: none">
+          <spna style="display: none"><!-- 不顯示預設，再外包樣式 -->
             <%= f.file_field :image %>
           </spna>
         </label>
 
-        <div class="form-group">
-          <!-- 水平排列失效待修 -->
-          <div class="form-check form-check-inline">
-            Who Can See
-          </div>
-          <div class="input">
-            <%= radio_button :post, :authority, "all", { checked: true } %>
-            <%= label_tag :All, "All" %>
-          </div>
-          <div class="input">
-            <%= radio_button :post, :authority, "friend" %>
-            <%= label_tag :Friend, "Friend" %>
-          </div>
-          <div class="input">
-            <%= radio_button :post, :authority, "myself" %>
-            <%= label_tag :Myself, "Myself" %>
-          </div>
-        </div>
+        <!-- Radio-button table -->
+        <table class="new_table">
+          <tr>
+            <td>
+              <div class="new_title">
+                Who Can See
+              </div>
+            </td>
+            <td class="new_td">
+              <span class="input"><!-- span 水平排列 -->
+                <%= radio_button :post, :authority, "all", { checked: true } %>
+                <%= label_tag :All, "All" %>
+              </span>
+            </td>
+            <td class="new_td">
+              <span class="input">
+                <%= radio_button :post, :authority, "friend" %>
+                <%= label_tag :Friend, "Friend" %>
+              </span>
+            </td>
+            <td class="new_td">
+              <span class="input">
+                <%= radio_button :post, :authority, "myself" %>
+                <%= label_tag :Myself, "Myself" %>
+              </span>
+            </td>
+          </tr>
+        </table>
 
-        <div class="form-group">
-          <div class="form-check form-check-inline">
-            Category
-          </div>
-          <div class="form-check form-check-inline">
+        <!-- checkbox-button table -->
+        <table class="new_table">
+          <tr>
+            <td>
+              <div class="new_title">
+                Category
+              </div>
+            </td>
+
             <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, {}, {multiple: true, class: "form-check-input"} do |c| %>
-              <%= c.label(class: "form-check-label") { c.check_box(class: "form-check-input") + c.text } %>&nbsp;&nbsp;
+              <td class="new_td">
+                <span class="form-check">
+                  <%= c.label(class: "form-check-label") { c.check_box(class: "form-check-input") + c.text } %>
+                </span>
+              </td>
             <% end %>
-          </div>
-        </div>
+          </tr>
+        </table>
 
-        <div class="form-check form-check-inline">
-          Status:
+        <div class="new_title">
+          Status: <%= @post.status %>
         </div>
+        <br />
 
-        <%# multi submit %>
+        <!-- multi submit -->
         <div class="form-group">
           <%= f.submit "Save Draft", name: "draft", class: "btn btn-default" %>
           <%= f.submit "Submit", name: "public", class: "btn btn-primary" %>

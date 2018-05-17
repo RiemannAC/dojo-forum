@@ -167,12 +167,23 @@ header {
 
 /*------ Post New radio & checkbox ------*/
 
-input[type=radio] {
-  display: inline-block;  /*  水平排列無效 */
-}
-
 input[type=checkbox], input[type=radio] {
   margin: 0 10px;
+}
+
+.new_title {
+  color: black;
+  font-size: 12px;
+  width: 100px;        /*  注意對 span 無效 */
+  font-weight: bold;
+}
+
+.new_table {
+  margin-bottom: 10px;
+}
+
+.new_td {
+  width: 100px;
 }
 
 /*------ Post Show  ------*/
