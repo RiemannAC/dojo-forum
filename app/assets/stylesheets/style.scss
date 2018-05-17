@@ -152,35 +152,17 @@ header {
 
 .read {
   background-color: #add8e6;
-  width: 50px;
+  width: 45px;
   text-align: center;
   border-radius: 5px;
   display: inline-block;
+  font-size: 1px;
 }
 
 /*------ Post New file upload button ------*/
 
-#uploadfile .defaultupload {
-    opacity: 0;                  /* 蓋到 title 待修 */
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    z-index: 2;
-}
-
-#uploadfile .defaultupload:hover {
-    opacity: 0;
-}
-
-#uploadfile button {
-    position: relative;
-    top: 0;
-    z-index: 1;
-}
-
-.defaultupload select, input[type="file"] {
-height: 45px;
-line-height: 30px;
+.upload_button {
+  margin-bottom: 15px;
 }
 
 /*------ Post New radio & checkbox ------*/

@@ -10,11 +10,17 @@
         </div>
 
         <!-- File Upload botton -->
-        <div class="form-group">
-          <%= f.file_field :image %>
-        </div>
-        <br />
+        <!-- <div class="form-group"> -->
+          <%# f.file_field :image %>
+        <!-- </div> -->
+        <!-- <br /> -->
         <!-- File Upload botton end -->
+        <label class="btn btn-default upload_button">
+          File
+          <spna style="display: none">
+            <%= f.file_field :image %>
+          </spna>
+        </label>
 
         <div class="form-group">
           <!-- 水平排列失效待修 -->
