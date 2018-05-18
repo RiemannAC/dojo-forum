@@ -79,8 +79,8 @@ a, a:hover, a:focus {
 }
 
 #nav {
-  z-index: 100;             /* 最上層顯示 */
-  background-color: white;  /* 因最上層顯示，不上色的話會看到下層 */
+  z-index: 100;             /* 最上層顯示，需於 layout 伴隨加入 div nav_margin */
+  background-color: #fff;  /* 因最上層顯示，不上色的話會看到下層 */
   position: fixed;
   top: 0;
   left: 0;
@@ -404,7 +404,7 @@ input[type=checkbox], input[type=radio] {
     float: right;
     font-size: 25px;
     line-height: 40px;
-    color: white;
+    color: #000;                /*------ Nav 白底時要上色不然看不出來  ------*/
     background: transparent;
     padding: 0 15px;
     border: 0;
@@ -419,24 +419,27 @@ input[type=checkbox], input[type=radio] {
     opacity: 0;
   }
 
-  .menu-button-checkbox:checked ~ .menu {
-    display: block;
-  }
-
   .menu {
     display: none;
     margin-top: 0;
     padding-left: 0;
     position: fixed;
     right: 0;
-    top: 40px;
+    top: 0;                        /*------ 比較好看但會檔到 checkbox ------*/
     width: 150px;
     height: 100%;
-    background: red;
+    background: #939393;
   }
 
   .menu li {
-    border: 0;
-    border-radius: 0;
+    color: #fff;
+  }
+
+  .menu-button-checkbox:checked ~ .menu {
+    display: block;
+  }
+
+  .menu-button-checkbox:checked ~ .menu li {
+    display: block;
   }
 }
