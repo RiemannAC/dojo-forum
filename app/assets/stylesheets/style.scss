@@ -78,19 +78,6 @@ a, a:hover, a:focus {
   text-align: justify;
 }
 
-#nav {
-  z-index: 100;             /* 最上層顯示，需於 layout 伴隨加入 div nav_margin */
-  background-color: #fff;  /* 因最上層顯示，不上色的話會看到下層 */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.nav_margin {
-  height: 76px;             /* div collapse，因 Nav 和其餘不同層，#nav 設 margin-bottom 是無效的 */
-}
-
 /*------ header setting ------*/
 
 header {
@@ -124,6 +111,20 @@ header {
 .nav-right li {
   display: inline-block;
   margin: 8px 16px 16px 8px;
+}
+
+
+#nav {
+  z-index: 100;             /* 最上層顯示，需於 layout 伴隨加入 div nav_margin */
+  background-color: #fff;  /* 因最上層顯示，不上色的話會看到下層 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.nav_margin {
+  height: 76px;             /* div collapse，因 Nav 和其餘不同層，#nav 設 margin-bottom 是無效的 */
 }
 
 /*------ Post Index ------*/
@@ -400,23 +401,23 @@ input[type=checkbox], input[type=radio] {
 
 @media screen and (max-width: 1023px) {
 
-  .menu-button {
-    float: right;
-    font-size: 25px;
-    line-height: 40px;
-    color: #000;                /*------ Nav 白底時要上色不然看不出來  ------*/
-    background: transparent;
-    padding: 0 15px;
-    border: 0;
+  .menu-button-checkbox {       /*------ 注意要設定在容器裡面，menu-button 才靠得過來  ------*/
+    position: fixed;            /*------ 1~3 與 icon 對位  ------*/
+    top: 0;
+    right: 32px;
+    width: 26px;                /*------ 對 icon 寸尺  ------*/
+    height: 43px;               /*------ 對 icon 寸尺  ------*/
+    opacity: 0;                 /*------ 不透明將之隱藏  ------*/
   }
 
-  .menu-button-checkbox {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 55px;
-    height: 40px;
-    opacity: 0;
+  .menu-button {
+    float: right;
+    font-size: 25px;            /*------ 設定 icon 尺寸  ------*/
+    line-height: 40px;
+    color: #000;                /*------ Nav 白底時要上色不然看不出來  ------*/
+    background: transparent;    /*------ 透明 ------*/
+    /* padding: 0 15px; */
+    border: 0;                  /*------ 預設有格線，去除 ------*/
   }
 
   .menu {
@@ -424,15 +425,23 @@ input[type=checkbox], input[type=radio] {
     margin-top: 0;
     padding-left: 0;
     position: fixed;
-    right: 0;
-    top: 0;                        /*------ 比較好看但會檔到 checkbox ------*/
     width: 150px;
     height: 100%;
-    background: #939393;
+    right: 0;
+    top: 43px;                   /*------ 對接 checkbox 的高度  ------*/
+/*    background: #fff; nav 白底色和 sidenav 底色很難配，不如不要設定 */
   }
 
   .menu li {
-    color: #fff;
+    /*color: #fff; */
+    background-color: #939393;
+    border: 1px solid #333;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .menu li a {
+    color: #fff;                 /*------ link 顏色對 a 不是對 li 設定  ------*/
   }
 
   .menu-button-checkbox:checked ~ .menu {
