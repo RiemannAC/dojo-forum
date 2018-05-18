@@ -78,6 +78,19 @@ a, a:hover, a:focus {
   text-align: justify;
 }
 
+#nav {
+  z-index: 100;             /* 最上層顯示 */
+  background-color: white;  /* 因最上層顯示，不上色的話會看到下層 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.nav_margin {
+  height: 76px;             /* div collapse，因 Nav 和其餘不同層，#nav 設 margin-bottom 是無效的 */
+}
+
 /*------ header setting ------*/
 
 header {
@@ -374,4 +387,56 @@ input[type=checkbox], input[type=radio] {
   text-transform: capitalize;
   font-size: 16px;
   font-weight: bold;
+}
+
+/*------ 手機版  ------*/
+
+@media screen and (min-width: 1024px) {
+  .menu-button,
+  .menu-button-checkbox {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+
+  .menu-button {
+    float: right;
+    font-size: 25px;
+    line-height: 40px;
+    color: white;
+    background: transparent;
+    padding: 0 15px;
+    border: 0;
+  }
+
+  .menu-button-checkbox {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 55px;
+    height: 40px;
+    opacity: 0;
+  }
+
+  .menu-button-checkbox:checked ~ .menu {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    margin-top: 0;
+    padding-left: 0;
+    position: fixed;
+    right: 0;
+    top: 40px;
+    width: 150px;
+    height: 100%;
+    background: red;
+  }
+
+  .menu li {
+    border: 0;
+    border-radius: 0;
+  }
 }
