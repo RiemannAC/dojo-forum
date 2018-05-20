@@ -93,7 +93,6 @@ header {
   height: 76px;             /* div collapse，因 Nav 和其餘不同層，#header 設 margin-bottom 是無效的 */
 }
 
-
 #logo {
   float: left;  /* 原本圖片尺寸跟父層 header 跑，浮動排列就回復原來尺寸 */
   height: 50px;
@@ -109,13 +108,19 @@ header {
   margin: 20px 16px 16px 8px;
 }
 
-.nav-right {
-  float: right;
+/*=== nav right 設定：都使用 float right，圖片會跑到最右邊 ===*/
+#profile {
+  position: absolute;         /* 父層內絕對位置 */
+  right: 100px;               /* 排在 logout link 的左邊 */
+  height: 50px;               /* 排除上下內縮，以符合導覽列高度 */
 }
 
-.nav-right li {
-  display: inline-block;
-  margin: 8px 16px 16px 8px;
+.nav-right li {               /* menu button 出現時位置要再設定 */
+  position: absolute;
+  right: 0;
+  display: inline-block;  
+  font-size: 16px;
+  margin: 20px 16px 16px 8px;
 }
 
 /*------ Post Index ------*/
@@ -453,5 +458,14 @@ input[type=checkbox], input[type=radio] {
 
   .menu-button-checkbox:checked ~ .menu li {
     display: block;
+  }
+
+  /* nav right 小尺寸裝置之位置設定 */
+  #profile {
+    right: 155px;               /* 排在 logout link 的左邊 */
+  }
+
+  .nav-right li {
+    right: 55px;
   }
 }
