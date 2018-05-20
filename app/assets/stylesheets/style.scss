@@ -85,9 +85,14 @@ header {
   width: 100%;
   left: 0;
   right: 0;
-  background-color: #222;
-  z-index: 100; 
+  background-color: #fff;   /* 因最上層顯示，不上色的話會看到下層 */
+  z-index: 100;             /* 最上層顯示，需於 layout 伴隨加入 div nav_margin */
 }
+
+.nav_margin {
+  height: 76px;             /* div collapse，因 Nav 和其餘不同層，#header 設 margin-bottom 是無效的 */
+}
+
 
 #logo {
   float: left;  /* 原本圖片尺寸跟父層 header 跑，浮動排列就回復原來尺寸 */
@@ -111,20 +116,6 @@ header {
 .nav-right li {
   display: inline-block;
   margin: 8px 16px 16px 8px;
-}
-
-
-#nav {
-  z-index: 100;             /* 最上層顯示，需於 layout 伴隨加入 div nav_margin */
-  background-color: #fff;  /* 因最上層顯示，不上色的話會看到下層 */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.nav_margin {
-  height: 76px;             /* div collapse，因 Nav 和其餘不同層，#nav 設 margin-bottom 是無效的 */
 }
 
 /*------ Post Index ------*/
