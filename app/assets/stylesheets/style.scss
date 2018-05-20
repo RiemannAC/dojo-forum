@@ -153,15 +153,16 @@ header {
   text-transform: capitalize;
 }
 
+/* button tag 長寬內縮都有預設，避免多餘設定 */
 .replies_count {
-  border: 1px solid #333;
+  display: block;              /* 按鈕置中排列，不要在父層設定 text-align:center 很不直觀 */
+  margin: 0 auto;              /* 按鈕置中排列 */
+  border: 1px solid #d9d9d9;   /* 相近色系避免按各個按鈕長度差異過大的感覺 */
+  min-width: 32px;             /* 避免單位數及雙位數寬度差異過大 */
   border-radius: 3px;
   background-color: #eee;
-  text-align: center;
-  font-color: #939393;
-  padding: 3px 0;
-  width: 25%;
-  margin: 0 auto;
+  text-align: center;          /* 數字置中 */
+  color: #7d7d7d;              /* 字體顏色 不是 font-color */
 }
 
 .read {
@@ -393,7 +394,7 @@ input[type=checkbox], input[type=radio] {
 /*------ Session New  ------*/
 
 .devise_button {
-  position: relative;
+  position: relative;           /*------ 按鈕水平排列，中間不可夾 end 會失效  ------*/
   display: inline;
 }
 

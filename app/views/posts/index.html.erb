@@ -37,7 +37,7 @@
       <tbody>
         <% @posts.each do |post| %>
           <tr data-link="<%= post_path(post) %>">
-            <td><div class="replies_count"><%= post.comments_count %></div></td>
+            <td><button class="replies_count"><%= post.comments_count %></button></td>
             <td>
               <div>
                 <span class="post_title"><%= post.title %></span>
