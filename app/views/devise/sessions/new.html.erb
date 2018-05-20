@@ -19,14 +19,12 @@
       </div>
     <% end -%>
 
-    <div class="actions">
-      <%= f.submit "Log in", class: "btn btn-default" %>
+    <div class="devise_button">
+      <%= f.submit "Log in", class: "btn btn-primary" %><!-- 注意兩個按鈕樣式設定的位置不同 -->
+    </div>
+    <div class="devise_button btn btn-default"><!-- 預設放在 end 後面，無法水平排列 -->
+      <%= link_to "Sign up", new_registration_path(resource_name) %>
     </div>
   <% end %>
-
-  <div class="btn btn-default">
-    <%= link_to "Sign up", new_registration_path(resource_name) %>
-  </div>
-
 </div>
 

@@ -390,6 +390,13 @@ input[type=checkbox], input[type=radio] {
   font-weight: bold;
 }
 
+/*------ Session New  ------*/
+
+.devise_button {
+  position: relative;
+  display: inline;
+}
+
 /*------ 手機版  ------*/
 
 @media screen and (min-width: 1024px) {

@@ -15,8 +15,11 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :avatar, "Avatar" %>
-      <%= f.file_field :avatar %>
+      <%= f.label :avatar, "Avatar :" %>
+      <label class="btn btn-default upload_button">
+        File
+        <spna style="display: none"><%= f.file_field :avatar %></spna>
+      </label>
     </div>
 
     <div class="form-group" >
@@ -46,14 +49,12 @@
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Sign up", class: "btn btn-default" %>
+    <div class="devise_button">
+      <%= f.submit "Sign up", class: "btn btn-primary" %>
+    </div>
+    <div class="devise_button btn btn-default">
+      <%= link_to "Log in", new_session_path(resource_name) %><!-- 用 partial 按鈕右側會被吃掉原因不明 -->
     </div>
   <% end %>
-
-  <div class="btn btn-default">
-    <%= render "devise/shared/links" %>
-  </div>
-
 </div>
 
