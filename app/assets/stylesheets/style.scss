@@ -244,18 +244,13 @@ input[type=checkbox], input[type=radio] {
   transition: all .4s linear;
 }                                 /* 以上 post show #title_banner 設定 */
 
-.post_bar {
-  margin: 8px 0;
-}
-
-.comment_bar {
-  margin: 8px 0;
-  background-color: #efefef;
-}
-
-.avatar_bar {
-  display: block;   /* 物件要分開，不然垂直排列無效 */
+.post_user_info {
+  float: left;
+  width: 25%;
+  padding: 15px 0;
+  display: inline-block;          /* .post_user_info .post_info 水平排列 */
   text-align: center;
+  margin: 8px 0;
 }
 
 .avatar_name {
@@ -266,8 +261,37 @@ input[type=checkbox], input[type=radio] {
   text-align: center;
 }
 
-.content {
+.post_info {
+  width: 75%;
+  padding: 15px 0;
+  display: inline-block;          /* .post_user_info .post_info 水平排列 */
+}
+
+.image {
+  margin-bottom: 15px;
+}
+
+.edit_button_table {     /* edit_button 垂直置底設定 */
+  display: table;        /* float 區塊至少一個元素有高度設定(非百分比)，讓置底有個基準;容器也可以包覆元素。註1：.comment_info */
+  position: relative;
+  width: auto;
+  float: right;          /* 不可設定在 edit_button 會和置底設定衝突 */
+  height: 80px;          /* 不能設 auto 或百分高度 */
+}
+
+.edit_button {
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+.comment_bar {
+  margin: 8px 0;
+  background-color: #efefef;
+}
+
+.post_content {
   color: #767676;
+  width: 100%;
 }
 
 /*------ Feeds Index  ------*/
@@ -487,5 +511,22 @@ input[type=checkbox], input[type=radio] {
   .title_buttons {                      /* title_buttons RWD */
     float: left;
     margin: 20px 15px 20px 15px;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .post_user_info {
+    /*float: left;*/
+    width: 100%;
+    padding: 15px 0;
+    display: block;          /* 小尺寸取消 .post_user_info .post_info 水平排列 */
+    text-align: center;
+    margin: 8px 0;
+  }
+
+  .post_info {
+    width: 100%;
+    padding: 15px 0;
+    display: block;          /* 小尺寸取消 .post_user_info .post_info 水平排列 */
   }
 }

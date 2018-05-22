@@ -10,43 +10,30 @@
       </div>
     </div>
   </div>
-</div>
+</div><!-- title_banner end -->
+
+<div id="post">
+  <div class="container">
+    <div class="post_user_info clearfix">
+      <%= render partial: "shared/post_user_info", locals: { user: @post.user } %>
+    </div>
+
+    <div class="post_info">
+      <div class="image"><%= image_tag @post.image, style: "width: 100%;" if @post.image? %></div>
+      <div class="post_content"><%= @post.content %></div>
+
+      <div class="edit_button_table">
+        <div class="edit_button">
+          <%= render partial: "shared/post_edit_button", locals: { user: @post.user } %>
+        </div>
+      </div>
+
+    </div><!-- post_info end -->
+  </div><!-- container end -->
+</div><!-- post end -->
 
 <div class="container">
   <div class="row">
-    <!-- post -->
-    <div class="post_bar col-md-12">
-      <div class="avatar_bar col-md-2">
-        <div><%= image_tag @post.user.avatar, width: 140, height: 140 if @post.user.avatar? %></div>
-        <div class="avatar_name"><%= @post.user.name %></div>
-        <!-- Friend button -->
-        <% if @post.user != current_user && !@post.user.friend?(current_user) && !current_user.request_friend?(@post.user) %>
-          <div class="friend_button">
-            <%= link_to "Friend", friendships_path(friend_id: @post.user), class: "btn btn-primary", method: :post %>
-          </div>
-        <% end %>
-        <!-- Friend button -->
-      </div>
-
-      <div class="image_bar col-md-10">
-        <div><%= image_tag @post.image, width: 500 if @post.image? %></div>
-        <br />
-        <div class="content"><%= @post.content %></div>
-        <!-- post edit destroy button -->
-        <% if @post.user == current_user || current_user.admin? %>
-          <div class="post_buttons pull-right">
-            <%= link_to edit_post_path(@post) do %>
-              <i class="fa fa-edit fa-2x"></i>
-            <% end %>
-            <%= link_to post_path(@post), method: :delete, data: { confirm: "Are you sure？" } do %>
-              <i class="fa fa-trash fa-2x"></i>
-            <% end %>
-          </div>
-        <% end %>
-        <!-- post edit destroy button end -->
-      </div>
-    </div>
-
     <!-- comments new version -->
     <div class="col-md-12">
       <% @comments.each do |comment| %>

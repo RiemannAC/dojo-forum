@@ -1,0 +1,10 @@
+<% if user == current_user || current_user.admin? %>
+  <div class="post_buttons">
+    <%= link_to edit_post_path(@post) do %>
+      <i class="fa fa-edit fa-2x"></i>
+    <% end %>
+    <%= link_to post_path(@post), method: :delete, data: { confirm: "Are you sure？" } do %>
+      <i class="fa fa-trash fa-2x"></i>
+    <% end %>
+  </div>
+<% end %>
