@@ -21,50 +21,31 @@
     <div class="post_info">
       <%= render partial: "shared/post_info", locals: { user: @post.user } %>
     </div>
-
   </div><!-- container end -->
 </div><!-- post end -->
 
+<hr>
+
+<div id="comments">
+  <% @comments.each do |comment| %>
+    <div class="comments">
+      <div class="comment_container clearfix">
+        <div class="comment_user_info">
+          <%= render partial: "shared/post_user_info", locals: { user: comment.user } %>
+        </div>
+        <div class="comment_info">
+          <%= render partial: "shared/comment_info", locals: { comment: comment } %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <div class="container">
   <div class="row">
-    <!-- comments new version -->
-    <div class="col-md-12">
-      <% @comments.each do |comment| %>
-        <div class="comment_bar col-md-12"><!-- 內包不然會重疊 -->
-          <br />
-          <div class="avatar_bar col-md-2">
-            <div><%= image_tag comment.user.avatar, width: 140, height: 140 if comment.user.avatar? %></div>
-            <div class="avatar_name"><%= comment.user.name %></div>
-            <!-- add Friend button -->
-            <% if @post.user != current_user && !@post.user.friend?(current_user) && !current_user.request_friend?(@post.user) %>
-              <div class="friend_button">
-                <%= link_to "Friend", friendships_path(friend_id: comment.user), class: "btn btn-primary", method: :post %>
-              </div>
-            <% end %>
-            <!-- add Friend button -->
-            <br />
-          </div>
-
-          <div class="image_bar col-md-10">
-            <div class="content"><%= comment.content %></div>
-            <!-- comment edit destroy button -->
-            <% if comment.user == current_user || current_user.admin? %>
-              <div class="comment_buttons pull-right">
-                <%# link_to edit_comment_post_path(@post, comment_id: comment.id), remote: true %>
-                <%= link_to post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure？" } do %>
-                  <i class="fa fa-trash fa-2x"></i>
-                <% end %>
-              </div>
-            <% end %>
-            <!-- comment edit destroy button end -->
-          </div><!-- image_bar end -->
-        </div>
-      <% end %>
-
-      <!-- comment 分頁 -->
-      <div class="text-center">
-        <%= paginate @comments %>
-      </div>
+    <!-- comment 分頁 -->
+    <div class="text-center">
+      <%= paginate @comments %>
     </div>
 
     <!-- 回文區 -->
@@ -81,5 +62,5 @@
       </div>
     </div>
 
-  </div>
-</div>
+  </div><!-- row end -->
+</div><!-- container end -->

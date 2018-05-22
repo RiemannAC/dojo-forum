@@ -271,6 +271,11 @@ input[type=checkbox], input[type=radio] {
   margin-bottom: 15px;
 }
 
+.post_content {
+  color: #767676;
+  width: 100%;
+}
+
 .edit_button_table {     /* edit_button 垂直置底設定 */
   display: table;        /* float 區塊至少一個元素有高度設定(非百分比)，讓置底有個基準;容器也可以包覆元素。註1：.comment_info */
   position: relative;
@@ -284,15 +289,43 @@ input[type=checkbox], input[type=radio] {
   vertical-align: bottom;
 }
 
-.comment_bar {
-  margin: 8px 0;
+.comments {
+  margin: 8px auto;
   background-color: #efefef;
+  border-radius: 5px;
+  width: 80%;
 }
 
-.post_content {
-  color: #767676;
-  width: 100%;
+.comment_container {
+  width: 85%;
+  /*max-width: 1170px;*/
+  margin: 0 2px;
+  /*position: relative;*/
 }
+
+.comment_user_info {
+  float: left;
+  width: 25%;
+  padding: 15px 10px 15px 20px;
+  display: inline-block;          /* .post_user_info .post_info 水平排列 */
+  text-align: center;
+  margin: 8px 22px 8px 0;
+  min-height: 210px;              /* float 後無高度概念，至少有一個元素要設定高度，user_info 變動不大，設定這個比較方便 */
+}
+
+.comment_info {                  /* ---------- 長度無法佈滿容器，待修正 ---------- */
+  float: left;
+  width: 72%;
+  padding: 15px 0;
+  display: inline-block;
+}
+
+/*.comment_bar {
+  margin: 8px 0;
+  background-color: #efefef;
+}*/
+
+
 
 /*------ Feeds Index  ------*/
 
@@ -532,5 +565,24 @@ input[type=checkbox], input[type=radio] {
     width: 100%;
     padding: 15px 0;
     display: block;          /* 小尺寸取消 .post_user_info .post_info 水平排列 */
+  }
+}
+
+@media screen and (max-width: 1074px) {
+  .comment_user_info {       /* 檢查工具可見右側 margin 無法用盡，待修 */
+    /*float: left;*/
+    width: 100%;
+    padding: 8px 0;
+    /*display: block;*/          /* 小尺寸取消 .comment_user_info .comment_info 水平排列 */
+    /*text-align: center;*/
+    margin: 8px 0;
+  }
+
+  .comment_info {
+    width: 100%;
+    padding: 8px 10px;
+    text-align: center;
+    min-height: auto;        /* 小尺寸取消 最小高度，只設定 height 是無效的 */
+    display: block;          /* 小尺寸取消 .comment_user_info .comment_info 水平排列 */
   }
 }
