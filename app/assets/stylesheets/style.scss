@@ -199,26 +199,39 @@ input[type=checkbox], input[type=radio] {
 
 /*------ Post Show  ------*/
 
-.title_bar {
-  color: #333;
+#title_banner {
   background-color: #efefef;
-  font-size: 22px;
+  height: auto;              /* RWD small size setting */
+}
+/* 各元素屬性不一，padding 個別設定 */
+
+.banner_title {
+  float: left;
+  padding: 15px 15px 0 15px;
+  color: #222;
+  font-size: 24px;
   font-weight: bold;
   text-transform: capitalize;
-  padding: 15px;
+}
+
+.title_buttons {
+  float: right;                 /* 479 以下設為 float left */
+  margin: 20px 15px 20px 15px;
+}
+
+.title_button {
+  display: inline-block; /* 盒子水平排列，設定在 .title_button a 時會失效 */
 }
 
 .title_button  a {            /*------ <%= link_to ~, class: "btn btn-default" %> 再外掛樣式，解決使用 post 動作且按鈕不變型  ------*/
-  display: inline-block;
+  min-width: 95px;       /* 等長按鈕，設定在父層盒子 => 字數變少時按鈕會變短 */
+  max-width: 95px;       /* 等長按鈕，設定在父層盒子 => 字數變少時按鈕會變短 */
   font-size: 16px;
   color: #000;
   border: 1px solid #333;
   border-radius: 5px;
   padding: 5px 5px;
   text-transform: capitalize;
-/*  
-  float: right;    右拉，記得加 clearfix，找相關使用這個的元素
-*/
 }
 
 .title_button  a:hover {
@@ -229,7 +242,7 @@ input[type=checkbox], input[type=radio] {
   -ms-transition: all .4s linear;
   -o-transition: all .4s linear;
   transition: all .4s linear;
-}
+}                                 /* 以上 post show #title_banner 設定 */
 
 .post_bar {
   margin: 8px 0;
@@ -467,5 +480,12 @@ input[type=checkbox], input[type=radio] {
 
   .nav-right li {
     right: 55px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .title_buttons {                      /* title_buttons RWD */
+    float: left;
+    margin: 20px 15px 20px 15px;
   }
 }
