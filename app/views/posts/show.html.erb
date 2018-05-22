@@ -19,16 +19,9 @@
     </div>
 
     <div class="post_info">
-      <div class="image"><%= image_tag @post.image, style: "width: 100%;" if @post.image? %></div>
-      <div class="post_content"><%= @post.content %></div>
+      <%= render partial: "shared/post_info", locals: { user: @post.user } %>
+    </div>
 
-      <div class="edit_button_table">
-        <div class="edit_button">
-          <%= render partial: "shared/post_edit_button", locals: { user: @post.user } %>
-        </div>
-      </div>
-
-    </div><!-- post_info end -->
   </div><!-- container end -->
 </div><!-- post end -->
 

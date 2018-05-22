@@ -1,4 +1,4 @@
-<div><%= image_tag @post.user.avatar, width: 140 if @post.user.avatar? %></div>
+<div><%= image_tag @post.user.avatar, width: 140, height: 140 if @post.user.avatar? %></div>
 <div class="avatar_name"><%= @post.user.name %></div>
 <div class="friend_button" id="user-<%= user.id %>"><!-- Ajax prepare -->
   <%= render partial: "shared/friend_button", locals: { user: user } %>
