@@ -9,17 +9,17 @@
           <div class="avatar_name"><%= user.name %></div>
         <% end %>
       </div>
-      <div class="profile_right col-md-10">
+      <div class="profile_right col-md-10 clearfix">
         <div class="profile_top">
           <div class="content"><%= user.intro %></div>
         </div>
         <div class="profile_bottom">
           <% if user == current_user %>
-            <div class="title_button pull-right">
+            <div class="title_button button-margin pull-right">
               <%= link_to "Edit", edit_user_path(user), class: "btn btn-default" %>
             </div>
           <% else %>
-            <div class="friend_button pull-right" id="user-<%= user.id %>"><!-- 此處pull-right強過 CSS 置中設定 -->
+            <div class="friend_button button-margin pull-right" id="user-<%= user.id %>"><!-- 此處pull-right強過 CSS 置中設定 -->
               <%= render partial: "shared/friend_button", locals: { user: user } %>
             </div>
           <% end %>

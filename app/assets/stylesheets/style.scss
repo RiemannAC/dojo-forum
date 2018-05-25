@@ -372,6 +372,10 @@ input[type=checkbox], input[type=radio] {
   height: 20%;             /*------ 無效待修正  ------*/
 }
 
+.button-margin {
+  margin: 8px 0;
+}
+
 /*------ User Comments  ------*/
 
 .post {
@@ -397,6 +401,10 @@ input[type=checkbox], input[type=radio] {
 /*------ User Friends  ------*/
 
 /*------  重疊按鈕置中 block 加 margin auto 會和 titile_button 的 inline-block 衝突 ------*/
+
+
+
+
 .friend_button a {
   display: block;                
   margin: 0 auto;  /*------  一, 二行在盒內置中  ------*/
