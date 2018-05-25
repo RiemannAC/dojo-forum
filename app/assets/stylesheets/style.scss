@@ -248,7 +248,7 @@ input[type=checkbox], input[type=radio] {
   float: left;
   width: 25%;
   padding: 15px 0;
-  display: inline-block;          /* .post_user_info .post_info 水平排列 */
+  /*display: inline-block;*/          /* .post_user_info .post_info 水平排列 => 使用 float 與 clearfix 處理即可 */
   text-align: center;
   margin: 8px 0;
 }
@@ -258,13 +258,14 @@ input[type=checkbox], input[type=radio] {
   text-transform: capitalize;
   font-size: 24px;
   font-weight: bold;
-  text-align: center;
+  /*text-align: center;*/             /*父層已設定*/
 }
 
 .post_info {
+  float: left;
   width: 75%;
   padding: 15px 0;
-  display: inline-block;          /* .post_user_info .post_info 水平排列 */
+  /*display: inline-block;*/          /* .post_user_info .post_info 水平排列 => 使用 float 與 clearfix 處理即可 */
 }
 
 .image {
@@ -274,14 +275,16 @@ input[type=checkbox], input[type=radio] {
 .post_content {
   color: #767676;
   width: 100%;
+  /*height: 80%;*/
 }
 
 .edit_button_table {     /* edit_button 垂直置底設定 */
   display: table;        /* float 區塊至少一個元素有高度設定(非百分比)，讓置底有個基準;容器也可以包覆元素。註1：.comment_info */
   position: relative;
-  width: auto;
+  /*width: auto;*/       /* 多餘 */
   float: right;          /* 不可設定在 edit_button 會和置底設定衝突 */
-  height: 80px;          /* 不能設 auto 或百分高度 */
+  height: 80px;          /* 細部元件不要設 auto 或百分高度，容易跑版 */
+  margin: 0 10px 10px 0;
 }
 
 .edit_button {
@@ -297,35 +300,29 @@ input[type=checkbox], input[type=radio] {
 }
 
 .comment_container {
-  width: 85%;
-  /*max-width: 1170px;*/
-  margin: 0 2px;
-  /*position: relative;*/
+  width: 100%;                  /* each do 內包時，容器寬度要全寬，否則右側會有一大塊 margin */
+  margin: 2px 0;
+  position: relative;
 }
 
 .comment_user_info {
   float: left;
+  /*position: relative;*/
   width: 25%;
   padding: 15px 10px 15px 20px;
-  display: inline-block;          /* .post_user_info .post_info 水平排列 */
+  /*display: inline-block;*/      /* 多餘的設定 .post_user_info .post_info 水平排列 */
   text-align: center;
-  margin: 8px 22px 8px 0;
-  min-height: 210px;              /* float 後無高度概念，至少有一個元素要設定高度，user_info 變動不大，設定這個比較方便 */
+  /*margin: 8px 22px 8px 0;*/     /* 重要重要===== 設定 margin 兩欄位無法吃滿寬度，RWD 會很難設定=====重要重要 */
+  /*min-height: 210px;*/              /* float 後無高度概念，至少有一個元素要設定高度，user_info 變動不大，設定這個比較方便 => 請愛用 clearfix */
 }
 
-.comment_info {                  /* ---------- 長度無法佈滿容器，待修正 ---------- */
+.comment_info {                   /* ---------- 長度無法佈滿容器，待修正 ---------- */
   float: left;
-  width: 72%;
-  padding: 15px 0;
-  display: inline-block;
+  /*position: relative;*/
+  width: 75%;
+  padding: 15px 0 15px 15px;
+  /*display: inline-block;*/      /* 多餘的設定 .post_user_info .post_info 水平排列===百分比加 float 就可以處理了 */
 }
-
-/*.comment_bar {
-  margin: 8px 0;
-  background-color: #efefef;
-}*/
-
-
 
 /*------ Feeds Index  ------*/
 
@@ -556,33 +553,33 @@ input[type=checkbox], input[type=radio] {
     /*float: left;*/
     width: 100%;
     padding: 15px 0;
-    display: block;          /* 小尺寸取消 .post_user_info .post_info 水平排列 */
-    text-align: center;
+    /*display: block;*/          /* 小尺寸取消 .post_user_info .post_info 水平排列 => 利用 100% 寬度去擠 post_info 即可 */
+    /*text-align: center;*/  /* 本來就有不要重復設定 */
     margin: 8px 0;
   }
 
   .post_info {
     width: 100%;
     padding: 15px 0;
-    display: block;          /* 小尺寸取消 .post_user_info .post_info 水平排列 */
+    /*display: block;*/          /* 小尺寸取消 .post_user_info .post_info 水平排列 => float + 100% 寬，不必再多此一舉 */
   }
 }
 
-@media screen and (max-width: 1074px) {
-  .comment_user_info {       /* 檢查工具可見右側 margin 無法用盡，待修 */
-    /*float: left;*/
+@media screen and (max-width: 849px) {
+  .comment_user_info {           /* 檢查工具可見右側 margin 無法用盡，待修 */
+    /*float: left;*/             /* 本來就有不要重復設定 */
     width: 100%;
     padding: 8px 0;
     /*display: block;*/          /* 小尺寸取消 .comment_user_info .comment_info 水平排列 */
     /*text-align: center;*/
-    margin: 8px 0;
+    /*margin: 8px 0;*/
   }
 
   .comment_info {
     width: 100%;
     padding: 8px 10px;
     text-align: center;
-    min-height: auto;        /* 小尺寸取消 最小高度，只設定 height 是無效的 */
-    display: block;          /* 小尺寸取消 .comment_user_info .comment_info 水平排列 */
+    /*min-height: auto;*/        /* 小尺寸取消 最小高度，只設定 height 是無效的 => clearfix 設定了就不用多設這個 */
+    /*display: block;*/          /* 小尺寸取消 .comment_user_info .comment_info 水平排列 => 請愛用 float 與寬度設定 */
   }
 }
