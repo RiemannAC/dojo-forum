@@ -11,7 +11,7 @@
             <td class="post_title" data-link="<%= post_path(post) %>">Published</td>
             <td class="post_title" data-link="<%= post_path(post) %>"><%= post.updated_at.strftime("%Y-%m-%d") %></td>
             <td>
-              <%# render partial: "shared/buttons", locals: { type: "Post", post: post } %>
+              <%= render partial: "shared/edit_buttons", locals: { post: post } %>
             </td>
           </tr>
         <% end %>

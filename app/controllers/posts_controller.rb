@@ -63,8 +63,7 @@ class PostsController < ApplicationController
       @post.status = "draft"
       if @post.update(post_params)
         flash[:notice] = "Draft already saved!"
-        # redirect_to drafts_user_path(current_user)
-        redirect_to root_path
+        redirect_to drafts_user_path(current_user)
       else
         flash.now[:alert] = @post.errors.full_messages.to_sentence
         render :edit
@@ -73,7 +72,7 @@ class PostsController < ApplicationController
       @post.status = "public"
       if @post.update(post_params)
         flash[:notice] = "Post already published!"
-        redirect_to post_path(@post)
+        redirect_to user_path(current_user)
       else
         flash.now[:alert] = @post.errors.full_messages.to_sentence
         render :edit
