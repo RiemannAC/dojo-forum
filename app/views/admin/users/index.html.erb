@@ -16,7 +16,7 @@
             <td data-link="<%= user_path(user) %>"><%= user.email %></td>
             <td>
               <%= form_tag admin_user_path(user), method: :patch, class: "form-inline" do %>
-                <%= select_tag :role, options_for_select([["Admin", "admin"], ["Normal", "normal"], params[:role]]), class: "form-control" %>
+                <%= select_tag :role, options_for_select([["admin"], ["normal"]], user.role), class: "form-control" %>
                 <%= submit_tag "Update", class: "btn btn-primary" %>
               <% end %>
             </td>
