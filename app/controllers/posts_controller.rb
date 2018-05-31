@@ -30,8 +30,7 @@ class PostsController < ApplicationController
     if params[:draft]
       @post.status = "draft"
       if @post.save
-        # redirect_to drafts_user_path(current_user)
-        redirect_to root_path
+        redirect_to drafts_user_path(current_user)
       else
         flash.now[:alert] = @post.errors.full_messages.to_sentence
         render :new
@@ -39,7 +38,7 @@ class PostsController < ApplicationController
     else
       @post.status = "public"
       if @post.save
-        redirect_to post_path(@post)
+        redirect_to user_path(current_user)
       else
         flash.now[:alert] = @post.errors.full_messages.to_sentence
         render :new
@@ -84,7 +83,7 @@ class PostsController < ApplicationController
     if @post.status = "public"
       @post.destroy
       flash[:notice] = "Post has been deleted!"
-      redirect_to posts_path
+      redirect_to user_path(current_user)
     else
       @post.destroy
       flash[:notice] = "Draft has been deleted!"
