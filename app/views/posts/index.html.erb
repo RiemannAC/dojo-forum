@@ -2,31 +2,7 @@
   <div class="row">
     <%= render partial: '/posts/post_nav' %>
 
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th class="text-center"><%= sort_link(@q, :comments_count, "Replies count", default_order: :desc) %></th>
-          <th><%= sort_link(@q, :title, "Title", default_order: :desc) %></th>
-          <th scope="col"><div class="index_msg">Last replied at</div></th>
-          <th class="text-center"><%= sort_link(@q, :viewed_count, "Viewed count", default_order: :desc) %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @posts.each do |post| %>
-          <tr data-link="<%= post_path(post) %>">
-            <td><button class="replies_count"><%= post.comments_count %></button></td>
-            <td>
-              <div>
-                <span class="post_title"><%= post.title %></span>
-                <div class="read"><%= 'Read' if post.seen_by?(current_user) %></div>
-              </div>
-            </td>
-            <td><div class="index_msg"><%= post.comments.last.created_at.strftime("%Y-%m-%d") if post.comments.present?  %></div></td>
-            <td><div class="index_msg"><i class="fa fa-eye"></i> <%= post.viewed_count %></div></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render partial: '/posts/post_list' %>
 
     <div class="text-center">
       <%= paginate @posts %>
