@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180430003541) do
+ActiveRecord::Schema.define(version: 20180602171004) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20180430003541) do
     t.integer "upvotes_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "last_replied_at"
   end
 
   create_table "users", force: :cascade do |t|
