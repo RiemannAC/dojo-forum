@@ -5,10 +5,10 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col"><div class="index_msg">Replies count</div></th>
-          <th scope="col">Title</th>
+          <th class="text-center"><%= sort_link(@q, :comments_count, "Replies count", default_order: :desc) %></th>
+          <th><%= sort_link(@q, :title, "Title", default_order: :desc) %></th>
           <th scope="col"><div class="index_msg">Last replied at</div></th>
-          <th scope="col"><div class="index_msg">Viewed count</div></th>
+          <th class="text-center"><%= sort_link(@q, :viewed_count, "Viewed count", default_order: :desc) %></th>
         </tr>
       </thead>
       <tbody>
