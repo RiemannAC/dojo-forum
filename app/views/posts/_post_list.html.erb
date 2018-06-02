@@ -17,7 +17,7 @@
             <div class="read"><%= 'Read' if post.seen_by?(current_user) %></div>
           </div>
         </td>
-        <td><div class="index_msg"><%= post.comments.last.created_at.strftime("%Y-%m-%d") if post.comments.present?  %></div></td>
+        <td><div class="index_msg"><%= post.last_replied_at.strftime("%Y-%m-%d") if post.last_replied_at.present?  %></div></td>
         <td><div class="index_msg"><i class="fa fa-eye"></i> <%= post.viewed_count %></div></td>
       </tr>
     <% end %>
