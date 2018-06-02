@@ -1,37 +1,14 @@
 <div class="container">
   <div class="row">
-    <nav class="category_bar clearfix">
-      <div class="button_set">
-        <div class="btn btn-default fixed_width_button">
-          <% if @category %>
-            <%= link_to "All", posts_path, class: "nav-link" %>
-          <% else %>
-            <%= link_to "All", posts_path, class: "nav-link active" %>
-          <% end %>
-        </div>
-
-        <% @categories.each do |category| %>
-          <%# 注意內包 css div 非外包 %>
-          <div class="btn btn-default fixed_width_button">
-            <% if @category && category.id == @category.id %>
-              <%= link_to category.name, posts_path(category_id: category.id), class: "nav-link active" %>
-            <% else %>
-              <%= link_to category.name, posts_path(category_id: category.id), class: "nav-link" %>
-            <% end %>
-          </div>
-        <% end %>
-
-      </div>
-    </nav>
+    <%= render partial: '/posts/post_nav' %>
 
     <table class="table table-hover">
       <thead>
         <tr>
-          <th><div class="index_msg">Replies count</div></th>
-          <th>Title</th>
-          <th><div class="index_msg">Last replied at</div></th>
-          <th><div class="index_msg">Viewed count</div></th>
-          <div class="index_msg"></div>
+          <th scope="col"><div class="index_msg">Replies count</div></th>
+          <th scope="col">Title</th>
+          <th scope="col"><div class="index_msg">Last replied at</div></th>
+          <th scope="col"><div class="index_msg">Viewed count</div></th>
         </tr>
       </thead>
       <tbody>
@@ -60,5 +37,5 @@
 <script>
   $("tr[data-link]").click(function() {
     window.location = $(this).data("link")
-  })
+  });
 </script>
