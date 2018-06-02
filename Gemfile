@@ -39,6 +39,7 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
+gem 'ransack'
 # dojo-forum
 
 
