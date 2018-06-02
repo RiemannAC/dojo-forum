@@ -1,23 +1,12 @@
-<nav class="category_bar clearfix">
-  <div class="button_set">
-    <div class="btn btn-default fixed_width_button">
-      <% if @category %>
-        <%= link_to "All", posts_path, class: "nav-link" %>
-      <% else %>
-        <%= link_to "All", posts_path, class: "nav-link active" %>
-      <% end %>
-    </div>
-
+<nav id="post_nav">
+  <ul class="nav nav-pills">
+    <li class="<%= 'active' if current_page?(root_path)%>"><!-- 不能掛雙重條件，全部使用 root_path 勿用 posts_path -->
+      <%= link_to "All", root_path %>
+    </li>    
     <% @categories.each do |category| %>
-      <%# 注意內包 css div 非外包 %>
-      <div class="btn btn-default fixed_width_button">
-        <% if @category && category.id == @category.id %>
-          <%= link_to category.name, posts_path(category_id: category.id), class: "nav-link active" %>
-        <% else %>
-          <%= link_to category.name, posts_path(category_id: category.id), class: "nav-link" %>
-        <% end %>
-      </div>
+      <li class="<%= 'active' if current_page?(posts_path(category_id: category.id)) %>">
+        <%= link_to category.name, posts_path(category_id: category.id) %>
+      </li>
     <% end %>
-
-  </div>
+  </ul>
 </nav>
