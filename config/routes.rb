@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "posts#index"
 
+  # _post_nav 顯示異常修正：點選分類後按 sort_link，all 分類會變 active
+  resources :categories, only: [:show]
+
   resources :posts do
     resources :comments, only: [:create, :destroy]
     member do

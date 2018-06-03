@@ -4,8 +4,9 @@
       <%= link_to "All", root_path %>
     </li>    
     <% @categories.each do |category| %>
-      <li class="<%= 'active' if current_page?(posts_path(category_id: category.id)) %>">
-        <%= link_to category.name, posts_path(category_id: category.id) %>
+      <li class="<%= 'active' if @category == category %>">
+        <%# link_to category.name, posts_path(category_id: category.id) %>
+        <%= link_to category.name, category_path(category) %><!-- 新增 category show 處理路由 params 不明確的問題 -->
       </li>
     <% end %>
   </ul>
