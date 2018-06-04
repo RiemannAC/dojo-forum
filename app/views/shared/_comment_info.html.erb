@@ -1,5 +1,4 @@
-<div class="comment_content"><%= comment.content %></div>
-<!-- comment edit destroy button -->
+<div class="comment_content<%= ' margin_for_btn' if comment.editable_comment?(current_user) %>"><%= comment.content %></div><!-- 注意：margin_for_btn 前有空一格 -->
 <div class="float_right_bottom">
   <%= render partial: "shared/comment_edit_button", locals: { post: @post, comment: comment } %>
 </div>

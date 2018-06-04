@@ -1,5 +1,5 @@
 <div class="image"><%= image_tag @post.image, style: "width: 100%;" if @post.image? %></div>
-<div class="post_content"><%= @post.content %></div>
+<div class="post_content<%= ' margin_for_btn' if @post.editable_post?(current_user) %>"><%= @post.content %></div><!-- 注意：margin_for_btn 前有空一格 -->
 <div class="float_right_bottom">
   <%= render partial: "shared/post_edit_button", locals: { user: user } %>
 </div>

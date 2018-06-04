@@ -1,4 +1,4 @@
-<% if user == current_user || current_user.admin? %>
+<% if @post.editable_post?(current_user) %>
   <div class="post_buttons">
     <%= link_to edit_post_path(@post) do %>
       <i class="fa fa-pencil" aria-hidden="true"></i>

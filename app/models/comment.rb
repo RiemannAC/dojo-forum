@@ -9,4 +9,9 @@ class Comment < ApplicationRecord
   def update_post_last_replied_at
     self.post.update(last_replied_at: self.updated_at)
   end
+
+  def editable_comment?(editor)
+    self.user == editor || editor.admin?
+  end
+
 end

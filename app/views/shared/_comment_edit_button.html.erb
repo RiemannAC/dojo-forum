@@ -1,4 +1,4 @@
-<% if comment.user == current_user || current_user.admin? %>
+<% if comment.editable_comment?(current_user) %>
   <div class="comment_buttons">
     <%= link_to edit_post_comment_path(post, comment) do %>
       <i class="fa fa-pencil" aria-hidden="true"></i>

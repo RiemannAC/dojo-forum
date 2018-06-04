@@ -52,4 +52,8 @@ class Post < ApplicationRecord
     self.collected_users.include?(user)
   end
 
+  def editable_post?(editor)
+    self.user == editor || editor.admin?
+  end
+
 end
