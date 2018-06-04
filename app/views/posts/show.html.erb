@@ -4,9 +4,7 @@
     <div class="title_buttons">
       <div class="title_button"><!-- 不用 button tag -->
         <%= render partial: "shared/collect_comment_button", locals: { post: @post } %>
-      </div>
-      <div class="title_button">
-        <%= link_to "Comment", comments_user_path(current_user), class: "btn btn-sm btn-primary" %>
+        <a href="#post-comments" class="btn btn-primary">Comment</a>
       </div>
     </div>
   </div>
@@ -49,7 +47,7 @@
     </div>
 
     <!-- 回文區 -->
-    <div class=id="comments">
+    <div id="post-comments">
       <div class="col-sm-12">
         <%= form_for [@post, @comment] do |f| %>
           <div class="form-group">
