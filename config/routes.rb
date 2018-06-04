@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
 
   resources :posts do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy, :edit, :update] # 新增已用 posts#create 表單輸入處理
     member do
-      get :edit_comment
       post :collect
       post :uncollect
     end

@@ -1,12 +1,12 @@
 <div class="container">
   <h3>Edit Comment</h3>
-  <div><!-- 進不來的修改區 QQ -->
-    <%= form_for [@post, @comment], url: {controller: "post", action: "edit_comment"} do |f| %>
+  <div>
+    <%= form_for [@post, @comment] do |f| %>
       <div class="form-group">
         <%= f.text_area :content, placeholder: "Edit Comment!", class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.submit class: "btn btn-default" %>
+        <%= f.submit "Update", class: "btn btn-default" %>
       </div>
     <% end %>
   </div>
