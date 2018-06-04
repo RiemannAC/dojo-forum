@@ -293,13 +293,24 @@ input[type=checkbox], input[type=radio] {
   margin-bottom: 15px;
 }
 
-.post_content {
+.post_content, .comment_content {
   color: #767676;
   width: 100%;
-  /*height: 80%;*/
+  /*height: 80%;*/       /* button 右下無效設定 */
+  margin-bottom: 45px;   /* 註* 細部元件固定寬時可用 => 但沒按鈕時，空白太多，加 editable?(user) 條件 */
 }
 
-.edit_button_table {     /* edit_button 垂直置底設定 */
+.float_right_bottom {      /* 右下定位有效但會重疊 post 文字 => margin 排不開文字，就讓文字排開底部。見上方註* */
+  /*display: inline-block;*/ /* a 已設定 inline-block */
+  margin: 8px;
+  width: 70px;           /* 元件寬度。若要使用 100% 父層寬度並不設定 margin 浮動排列仍會失效 */
+  float: right;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+
+.edit_button_table {     /* edit_button 垂直置底設定 => 效果不佳 */
   display: table;        /* float 區塊至少一個元素有高度設定(非百分比)，讓置底有個基準;容器也可以包覆元素。註1：.comment_info */
   position: relative;
   /*width: auto;*/       /* 多餘 */
@@ -308,7 +319,7 @@ input[type=checkbox], input[type=radio] {
   margin: 0 10px 10px 0;
 }
 
-.edit_button {
+.edit_button {           /* edit_button 垂直置底設定 => 效果不佳 */
   display: table-cell;
   vertical-align: bottom;
 }
@@ -343,6 +354,29 @@ input[type=checkbox], input[type=radio] {
   width: 75%;
   padding: 15px 0 15px 15px;
   /*display: inline-block;*/      /* 多餘的設定 .post_user_info .post_info 水平排列===百分比加 float 就可以處理了 */
+}
+
+.post_buttons i, .comment_buttons i {
+  padding: 6px 8px 6px 8px;
+}
+
+.post_buttons a, .comment_buttons a {
+  display: inline-block;         /* 若無設定 inline-block pencil icon 右側有空白；block 則會堆疊 */  
+  border-radius: 3px;
+  border: 1px solid #6c757d;
+  color: #6c757d;
+  font-size: 16px;
+  text-align: center;
+}
+
+.post_buttons a:hover, .comment_buttons a:hover {
+  background: #6c757d;
+  color: #fff;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  -ms-transition: all .1s linear;
+  -o-transition: all .1s linear;
+  transition: all .1s linear;
 }
 
 /*------ Feeds Index  ------*/

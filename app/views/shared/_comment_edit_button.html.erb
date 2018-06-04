@@ -1,10 +1,10 @@
 <% if comment.user == current_user || current_user.admin? %>
   <div class="comment_buttons">
     <%= link_to edit_post_comment_path(post, comment) do %>
-      <i class="fa fa-edit fa-2x"></i>
+      <i class="fa fa-pencil" aria-hidden="true"></i>
     <% end %>
     <%= link_to post_comment_path(post, comment), method: :delete, data: { confirm: "Are you sure？" } do %>
-      <i class="fa fa-trash fa-2x"></i>
+      <i class="fa fa-trash-o"  aria-hidden="true"></i>
     <% end %>
   </div>
 <% end %>
