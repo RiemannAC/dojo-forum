@@ -166,6 +166,7 @@ header {
   min-width: 85px;
   text-align: center;                 /* 文字置中 */
   padding: 10px;                      /* 預設15px，盡量調整緊致，不要太分散 */
+  margin: 0 6px 4px 0;                /* nav-pills 間距 */
 }
 
 .nav-pills > :not(:active) > a {      /* 不用 > 的話，會破壞 border */
