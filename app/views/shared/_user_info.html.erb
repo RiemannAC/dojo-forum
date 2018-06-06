@@ -1,32 +1,29 @@
 <div class="container-fluid">
   <div class="row">
     <div class="user_profile col-md-12">
-      <br />
 
-      <div class="avatar_bar col-md-2">
+      <section class="text-center col-md-2"><!-- avatar -->
         <%= link_to user_path(user) do %>
           <%= image_tag user.avatar, width: 140, height: 140 if user.avatar? %>
           <div class="avatar_name"><%= user.name %></div>
         <% end %>
-      </div>
-      <div class="profile_right col-md-10 clearfix">
-        <div class="profile_top">
-          <div class="content"><%= user.intro %></div>
-        </div>
-        <div class="profile_bottom">
+      </section>
+      <section class="profile_right col-md-10 clearfix">
+        <div class="content<%= ' margin_for_user_btn' if user_button?(user) %>"><%= user.intro %></div>
+
+        <div class="float_r_b">
           <% if user == current_user %>
-            <div class="title_button button-margin pull-right">
+            <div class="user_button">
               <%= link_to "Edit", edit_user_path(user), class: "btn btn-default" %>
             </div>
-          <% else %>
-            <div class="friend_button button-margin pull-right" id="user-<%= user.id %>"><!-- 此處pull-right強過 CSS 置中設定 -->
+          <% elsif !current_user.inverse_request_friend?(user) %><!-- 加顯示條件：阻檔 inverse_request 顯示 -->
+            <div class="friend_button" id="user-<%= user.id %>"><!-- 此處pull-right強過 CSS 置中設定 -->
               <%= render partial: "shared/friend_button", locals: { user: user } %>
             </div>
           <% end %>
         </div>
-      </div>
+      </section>
 
     </div>
   </div>
 </div>
-<br />

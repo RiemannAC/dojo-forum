@@ -416,22 +416,46 @@ input[type=checkbox], input[type=radio] {
 
 .user_profile {
   background-color: #f3f3f3;
+  padding: 16px;
+  margin-bottom: 16px;
 }
 
-.profile_right {
-  padding-right: 50px;
+.margin_for_user_btn {
+  margin-bottom: 55px;   /* 註* 細部元件固定寬時可用 => 但沒按鈕時，空白太多，加 user_button?(user) 條件 */
 }
 
-.profile_top {
-  height: 80%;             /*------ 無效待修正  ------*/
+.float_r_b {             /* 右下定位有效但會重疊 post 文字 => margin 排不開文字，就讓上方文字排開底部 */
+  margin: 8px;
+  width: 95px;           /* 元件寬度。若要使用 100% 父層寬度並不設定 margin 浮動排列仍會失效 */
+  float: right;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
 }
 
-.profile_bottom {
-  height: 20%;             /*------ 無效待修正  ------*/
+.profile_right {        /* 要訂高度，float_r_b 的屬性 bottom: 0px 才會生效，但不可定為 auto。對比 post_info 無需設定，查 */
+  min-height: 175px;    /* 有固定元件時，最小高度訂為 avatar 高度即可 */
 }
 
-.button-margin {
-  margin: 8px 0;
+.user_button  a {        /*------ <%= link_to ~, class: "btn btn-default" %> 再外掛樣式，解決使用 post 動作且按鈕不變型  ------*/
+  min-width: 95px;       /* 等長按鈕，設定在父層盒子 => 字數變少時按鈕會變短 */
+  max-width: 95px;       /* 等長按鈕，設定在父層盒子 => 字數變少時按鈕會變短 */
+  font-size: 16px;
+  color: #000;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 5px 5px;
+  text-transform: capitalize;
+}
+
+.user_button  a:hover {
+  background: #666;
+  color: #fff;
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  -ms-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear;
 }
 
 /*------ User Comments  ------*/
@@ -459,9 +483,6 @@ input[type=checkbox], input[type=radio] {
 /*------ User Friends  ------*/
 
 /*------  重疊按鈕置中 block 加 margin auto 會和 titile_button 的 inline-block 衝突 ------*/
-
-
-
 
 .friend_button a {
   display: block;                
@@ -499,10 +520,6 @@ input[type=checkbox], input[type=radio] {
   background-color: #ccc;
   padding-bottom: 15px;
   min-height: 250px;
-}
-
-.avatar_bar {
-  text-align: center;
 }
 
 /*------ Admin Category  ------*/
@@ -647,5 +664,11 @@ input[type=checkbox], input[type=radio] {
     text-align: center;
     /*min-height: auto;*/        /* 小尺寸取消 最小高度，只設定 height 是無效的 => clearfix 設定了就不用多設這個 */
     /*display: block;*/          /* 小尺寸取消 .comment_user_info .comment_info 水平排列 => 請愛用 float 與寬度設定 */
+  }
+}
+
+@media screen and (max-width: 975px) {
+  .profile_right {
+    min-height: auto;
   }
 }
