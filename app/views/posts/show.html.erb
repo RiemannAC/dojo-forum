@@ -2,8 +2,8 @@
   <div class="container">
     <div class="banner_title"><p><%= @post.title %></p></div>
     <div class="title_buttons">
-      <div class="title_button"><!-- 不用 button tag -->
-        <%= render partial: "shared/collect_comment_button", locals: { post: @post } %>
+      <div class="title_button">
+        <%= render partial: "shared/collect_button", locals: { post: @post } %>
         <a href="#post-comment" class="btn btn-primary">Comment</a>
       </div>
     </div>

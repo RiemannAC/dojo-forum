@@ -115,15 +115,32 @@ class PostsController < ApplicationController
   end
 
   def collect
-    @post.collections.create(user: current_user)
-    redirect_back(fallback_location: root_path)
+    if @post.is_collected?(current_user)
+      flash[:alert] = "錯誤"
+      redirect_back(fallback_location: root_path)
+    else
+      @post.collections.create(user: current_user)
+      # redirect_back(fallback_location: root_path)
+      # ajax
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 
   def uncollect
-    # @collect = @post.collections.find_by(user: current_user)
-    @collect = Collection.where(post: @post, user: current_user)
-    @collect.destroy_all
-    redirect_back(fallback_location: root_path)
+    if @post.is_collected?(current_user)
+      # @collect = @post.collections.find_by(user: current_user)
+      @collect = Collection.where(post: @post, user: current_user)
+      @collect.destroy_all
+      # redirect_back(fallback_location: root_path)
+      # ajax
+      respond_to do |format|
+        format.js
+      end
+    else
+      redirect_to post_path(@post)
+    end
   end
 
   private

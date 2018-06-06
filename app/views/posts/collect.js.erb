@@ -1,0 +1,5 @@
+// 注意 .parent() 指定父層
+$("#collect-<%= @post.id %>").parent().prepend("<%= j(link_to "Uncollect", uncollect_post_path(@post), method: :post,remote: true, class: "btn btn-sm btn-default uncollect-btn", id: "uncollect-#{@post.id}") %>");
+$("#collect-<%= @post.id %>").remove();
+// partial版，失敗 $("#collect-<%= @post.id %>").parent().prepend("<%= j(render partial: 'shared/collect_button', locals: { post: @post } ) %>");
+// helper版， 失敗 $("#collect-<%= @post.id %>").parent().prepend("<%= j(collect_btn(@post)) %>");

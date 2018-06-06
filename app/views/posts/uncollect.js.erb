@@ -1,0 +1,4 @@
+$("#uncollect-<%= @post.id %>").parent().prepend("<%= j(link_to "Collect", collect_post_path(@post), method: :post,remote: true, class: "btn btn-sm btn-default collect-btn", id: "collect-#{@post.id}") %>");
+$("#uncollect-<%= @post.id %>").remove();
+// partial版，失敗$("#uncollect-<%= @post.id %>").parent().prepend("<%= j(render partial: 'shared/collect_button', locals: { post: @post } ) %>");
+// helper版 ，失敗$("#uncollect-<%= @post.id %>").parent().prepend("<%= j(collect_btn(@post)) %>");
