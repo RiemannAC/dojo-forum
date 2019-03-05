@@ -2,7 +2,7 @@
 
 # config valid for current version and patch releases of Capistrano
 # 教案是 3.10.1 版
-# lock "~> 3.10.2"
+lock "~> 3.11.0"
 
 set :application, "dojo-forum"
 set :repo_url, "git@github.com:RiemannAC/dojo-forum.git"
