@@ -9,83 +9,12 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> <!-- google font -->
+    <%= yield :header %>
   </head>
 
   <body>
-    <header id="header">
-      <div class="container">
-        <nav>
-          <div id="logo">
-            <%= link_to root_path do %>
-              <%= image_tag("logo.png") %><!-- app/assets/images/logo.png -->
-            <% end %>
-          </div>
-
-          <!-- menu -->
-          <button type="button" class="menu-button"><!-- CSS 設定手機版不顯示 -->
-            <i class="fa fa-bars"></i>
-          </button>
-          <input type="checkbox" class="menu-button-checkbox">
-          <ul class="logo-item menu"><!-- menu 編輯 -->
-            <li><%= link_to "Feeds", feeds_path %></li>
-            <li><%= link_to "All Post", root_path %></li>
-            <li><%= link_to "New Post", new_post_path %></li>
-            <li><!-- 管理者登入顯示後台連結 -->
-              <% if current_user && current_user.admin? %>
-                <%= link_to admin_categories_path do %>
-                  <%= "Back-End" %> <i class="fa fa-users"></i>
-                <% end %>
-              <% end %>              
-            </li>
-          </ul>
-
-          <!-- 頭像連結個人頁面 profile -->
-          <div id="profile">
-            <% if current_user %>
-              <%= link_to user_path(current_user) do %>
-                <%= image_tag current_user.avatar, height: 50, width: 50 if current_user.avatar? %>
-              <% end %>
-            <% end %>
-          </div>
-
-          <!-- devise logout -->
-          <ul class="nav-right">
-            <li>
-              <% if current_user %>
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  <%= "Logout" %> <i class="fa fa-sign-out"></i>
-                <% end %>
-              <% else %>
-                 <%= link_to 'Change Password', edit_user_registration_path %>
-              <% end %>
-            </li>
-          </ul>
-        </nav>
-      </div><!-- container end -->
-      <!-- token -->
-      <%# if current_user %>
-        <%# current_user.authentication_token  %>
-      <%# end %>
-    </header>
-
-    <div class="nav_margin"></div><!-- div collapse -->
-
-    <!-- Alert -->
-    <div class="container">
-      <% if notice %>
-        <div class="alert alert-success alert-dismissible text-center" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><p aria-hidden="true">&times;</p></button>
-          <%= notice %>
-        </div>
-      <% end %>
-      <% if alert %>
-        <div class="alert alert-danger alert-dismissible text-center" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <%= alert %>
-        </div>
-      <% end %>
-    </div>
-    <br>
+    <%= render partial: '/layouts/header' %>
+    <%= render partial: '/layouts/alert' %>
     <%= yield %>
   </body>
 </html>
