@@ -1,54 +1,47 @@
-/*------ Basic setting ------*/
-
+// CSS Reset
 html, body {
   width: 100%;
   height: 100%;
 }
-
 body {
   padding: 0px;
   margin: 0px;
   font-size: 14px;
-  font-family: 'Montserrat', sans-serif;  /* google font */
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
 }
-
 * {
   box-sizing: border-box;
 }
-
 h1, h2, h3, h4, h5, h6, p {
   margin: 8px;
   padding: 0px;
 }
-
 ul, ol {
   list-style: none;
   margin: 0px;
   padding: 0px;
 }
-
 a, a:hover, a:focus {
   margin: 0px;
   padding: 0px;
   text-decoration: none;
 }
-
 .container {
   width: 85%;
   max-width: 1170px;
   margin: 0 auto;
   position: relative;
 }
-
-.clearfix::after {            /* ::after - 從選取元素的後面插入東西 */
+.clearfix::after {
   content: '';
   display: table;
-  clear: both;                /* 清除子元素設定的 float left、right，使其跟隨父層 */
+  clear: both;
 }
 
+// Basic Setting
 .link {
   font-size: 22px;
   margin: 16px 16px 8px 0;
@@ -78,71 +71,22 @@ a, a:hover, a:focus {
   text-align: justify;
 }
 
-/*------ header setting ------*/
-
-header {
-  position: fixed;
-  width: 100%;
-  left: 0;
-  right: 0;
-  background-color: #fff;   /* 因最上層顯示，不上色的話會看到下層 */
-  z-index: 100;             /* 最上層顯示，需於 layout 伴隨加入 div nav_margin */
-}
-
-.nav_margin {
-  height: 76px;             /* div collapse，因 Nav 和其餘不同層，#header 設 margin-bottom 是無效的 */
-}
-
-#logo {
-  float: left;  /* 原本圖片尺寸跟父層 header 跑，浮動排列就回復原來尺寸 */
-  height: 50px;
-}
-
-.logo-item {
-  float: left;
-  font-size: 16px;
-}
-
-.logo-item li {
-  display: inline-block;
-  margin: 20px 16px 16px 8px;
-}
-
-/*=== nav right 設定：都使用 float right，圖片會跑到最右邊 ===*/
-#profile {
-  position: absolute;         /* 父層內絕對位置 */
-  right: 100px;               /* 排在 logout link 的左邊 */
-  height: 50px;               /* 排除上下內縮，以符合導覽列高度 */
-}
-
-.nav-right li {               /* menu button 出現時位置要再設定 */
-  position: absolute;
-  right: 0;
-  display: inline-block;  
-  font-size: 16px;
-  margin: 20px 16px 16px 8px;
-}
-
-/*------ Post Index ------*/
-
+// Post Index
 .post_title {
   font-size: 16px;
   font-weight: bold;
   text-transform: capitalize;
 }
-
-/* button tag 長寬內縮都有預設，避免多餘設定 */
 .replies_count {
-  display: block;              /* 按鈕置中排列，不要在父層設定 text-align:center 很不直觀 */
-  margin: 0 auto;              /* 按鈕置中排列 */
-  border: 1px solid #d9d9d9;   /* 相近色系避免按各個按鈕長度差異過大的感覺 */
-  min-width: 32px;             /* 避免單位數及雙位數寬度差異過大 */
+  display: block;
+  margin: 0 auto;
+  border: 1px solid #d9d9d9;
+  min-width: 32px;
   border-radius: 3px;
   background-color: #eee;
-  text-align: center;          /* 數字置中 */
-  color: #7d7d7d;              /* 字體顏色 不是 font-color */
+  text-align: center;
+  color: #7d7d7d;
 }
-
 .read {
   background-color: #add8e6;
   width: 45px;
@@ -151,29 +95,24 @@ header {
   display: inline-block;
   font-size: 1px;
 }
-
 #postlist th a {
   color: black;
   font-size: 16px;
 }
-
 #post_nav {
   margin: 0 0 10px 8px;
 }
-
-#post_nav ul li a {                   /* 等長按鈕，注意文字長設 測試上限 或用truncate? */
+#post_nav ul li a {
   max-width: 85px;
   min-width: 85px;
-  text-align: center;                 /* 文字置中 */
-  padding: 10px;                      /* 預設15px，盡量調整緊致，不要太分散 */
-  margin: 0 6px 4px 0;                /* nav-pills 間距 */
+  text-align: center;
+  padding: 10px;
+  margin: 0 6px 4px 0;
 }
-
-.nav-pills > :not(:active) > a {      /* 不用 > 的話，會破壞 border */
+.nav-pills > :not(:active) > a {
   background-color: #eee;
 }
-
-.nav-pills > li > a:hover {           /* not active hover bg-color：li 不可跳過 */
+.nav-pills > li > a:hover {
   background-color: #ccc;
   -webkit-transition: all .2s linear;
   -moz-transition: all .2s linear;
@@ -181,8 +120,7 @@ header {
   -o-transition: all .2s linear;
   transition: all .2s linear;
 }
-
-.nav-pills > li.active > a:hover {    /* active hover bg-color：li 不可跳過 */
+.nav-pills > li.active > a:hover {
   background-color: #17547c;
   -webkit-transition: all .2s linear;
   -moz-transition: all .2s linear;
@@ -191,41 +129,33 @@ header {
   transition: all .2s linear;
 }
 
-/*------ Post New file upload button ------*/
-
+// Post New file upload button
 .upload_button {
   margin-bottom: 15px;
 }
 
-/*------ Post New radio & checkbox ------*/
-
+// Post New radio & checkbox
 input[type=checkbox], input[type=radio] {
   margin: 0 10px;
 }
-
 .new_title {
   color: black;
   font-size: 12px;
-  width: 100px;        /*  注意對 span 無效 */
+  width: 100px;
   font-weight: bold;
 }
-
 .new_table {
   margin-bottom: 10px;
 }
-
 .new_td {
   width: 100px;
 }
 
-/*------ Post Show  ------*/
-
+// Post Show
 #title_banner {
   background-color: #efefef;
-  height: auto;              /* RWD small size setting */
+  height: auto;
 }
-/* 各元素屬性不一，padding 個別設定 */
-
 .banner_title {
   float: left;
   padding: 15px 15px 0 15px;
@@ -234,19 +164,19 @@ input[type=checkbox], input[type=radio] {
   font-weight: bold;
   text-transform: capitalize;
 }
-
 .title_buttons {
-  float: right;                 /* 479 以下設為 float left */
+  // 479 以下設為 float left
+  float: right;
   margin: 20px 15px 20px 15px;
 }
 
 .title_button {
-  display: inline-block; /* 盒子水平排列，設定在 .title_button a 時會失效 */
+  display: inline-block;
 }
 
-.title_button  a {            /*------ <%= link_to ~, class: "btn btn-default" %> 再外掛樣式，解決使用 post 動作且按鈕不變型  ------*/
-  min-width: 95px;       /* 等長按鈕，設定在父層盒子 => 字數變少時按鈕會變短 */
-  max-width: 95px;       /* 等長按鈕，設定在父層盒子 => 字數變少時按鈕會變短 */
+.title_button  a {
+  min-width: 95px;
+  max-width: 95px;
   font-size: 16px;
   color: #000;
   border: 1px solid #333;
@@ -254,7 +184,6 @@ input[type=checkbox], input[type=radio] {
   padding: 5px 5px;
   text-transform: capitalize;
 }
-
 .title_button  a:hover {
   background: #666;
   color: #fff;
@@ -263,115 +192,88 @@ input[type=checkbox], input[type=radio] {
   -ms-transition: all .4s linear;
   -o-transition: all .4s linear;
   transition: all .4s linear;
-}                                 /* 以上 post show #title_banner 設定 */
-
+}
 .post_user_info {
   float: left;
   width: 25%;
   padding: 15px 0;
-  /*display: inline-block;*/          /* .post_user_info .post_info 水平排列 => 使用 float 與 clearfix 處理即可 */
   text-align: center;
   margin: 8px 0;
 }
-
 .avatar_name {
   color: #333;
   text-transform: capitalize;
   font-size: 24px;
   font-weight: bold;
-  /*text-align: center;*/             /*父層已設定*/
 }
-
 .post_info {
   float: left;
   width: 75%;
   padding: 15px 0;
-  /*display: inline-block;*/          /* .post_user_info .post_info 水平排列 => 使用 float 與 clearfix 處理即可 */
 }
-
 .image {
   margin-bottom: 15px;
 }
-
 .post_content, .comment_content {
   color: #767676;
   width: 100%;
-  /*height: 80%;*/       /* button 右下無效設定 */
 }
-
 .margin_for_btn {
-  margin-bottom: 45px;   /* 註* 細部元件固定寬時可用 => 但沒按鈕時，空白太多，加 editable?(user) 條件 */
+  margin-bottom: 45px;
 }
-
-.float_right_bottom {      /* 右下定位有效但會重疊 post 文字 => margin 排不開文字，就讓文字排開底部。見上方註* */
-  /*display: inline-block;*/ /* a 已設定 inline-block */
+.float_right_bottom {
   margin: 8px;
-  width: 70px;           /* 元件寬度。若要使用 100% 父層寬度並不設定 margin 浮動排列仍會失效 */
+  width: 70px;
   float: right;
   position: absolute;
   right: 0px;
   bottom: 0px;
 }
-
-.edit_button_table {     /* edit_button 垂直置底設定 => 效果不佳 */
-  display: table;        /* float 區塊至少一個元素有高度設定(非百分比)，讓置底有個基準;容器也可以包覆元素。註1：.comment_info */
+.edit_button_table {
+  display: table;
   position: relative;
-  /*width: auto;*/       /* 多餘 */
-  float: right;          /* 不可設定在 edit_button 會和置底設定衝突 */
-  height: 80px;          /* 細部元件不要設 auto 或百分高度，容易跑版 */
+  float: right;
+  height: 80px;
   margin: 0 10px 10px 0;
 }
-
-.edit_button {           /* edit_button 垂直置底設定 => 效果不佳 */
+.edit_button {
   display: table-cell;
   vertical-align: bottom;
 }
-
 .comments {
   margin: 8px auto;
   background-color: #efefef;
   border-radius: 5px;
   width: 80%;
 }
-
 .comment_container {
-  width: 100%;                  /* each do 內包時，容器寬度要全寬，否則右側會有一大塊 margin */
+  width: 100%;
   margin: 2px 0;
   position: relative;
 }
 
 .comment_user_info {
   float: left;
-  /*position: relative;*/
   width: 25%;
   padding: 15px 10px 15px 20px;
-  /*display: inline-block;*/      /* 多餘的設定 .post_user_info .post_info 水平排列 */
   text-align: center;
-  /*margin: 8px 22px 8px 0;*/     /* 重要重要===== 設定 margin 兩欄位無法吃滿寬度，RWD 會很難設定=====重要重要 */
-  /*min-height: 210px;*/              /* float 後無高度概念，至少有一個元素要設定高度，user_info 變動不大，設定這個比較方便 => 請愛用 clearfix */
 }
-
-.comment_info {                   /* ---------- 長度無法佈滿容器，待修正 ---------- */
+.comment_info {
   float: left;
-  /*position: relative;*/
   width: 75%;
   padding: 15px 0 15px 15px;
-  /*display: inline-block;*/      /* 多餘的設定 .post_user_info .post_info 水平排列===百分比加 float 就可以處理了 */
 }
-
 .post_buttons i, .comment_buttons i {
   padding: 6px 8px 6px 8px;
 }
-
 .post_buttons a, .comment_buttons a {
-  display: inline-block;         /* 若無設定 inline-block pencil icon 右側有空白；block 則會堆疊 */  
+  display: inline-block;
   border-radius: 3px;
   border: 1px solid #6c757d;
   color: #6c757d;
   font-size: 16px;
   text-align: center;
 }
-
 .post_buttons a:hover, .comment_buttons a:hover {
   background: #6c757d;
   color: #fff;
@@ -382,14 +284,12 @@ input[type=checkbox], input[type=radio] {
   transition: all .1s linear;
 }
 
-/*------ Feeds Index  ------*/
-
+// Feeds Index
 .count_bar {
   margin: 25px 0;
   padding: 50px 0;
   background-color: #f3f3f3;
 }
-
 .feeds_count {
   border: 1px solid #333;
   border-radius: 3px;
@@ -400,46 +300,39 @@ input[type=checkbox], input[type=radio] {
   width: 40%;
   margin: 0 auto;
 }
-
 .box {
-  width: 60%;                /*------ 下底線長度縮短  ------*/
+  width: 60%;
   margin: 0 auto;
 }
-
 .bottom_line {
   border-bottom: 2px solid #b1b1b1;
   padding-bottom: 5px;
 
 }
 
-/*------ User Show  ------*/
-
+// User Show
 .user_profile {
   background-color: #f3f3f3;
   padding: 16px;
   margin-bottom: 16px;
 }
-
 .margin_for_user_btn {
-  margin-bottom: 55px;   /* 註* 細部元件固定寬時可用 => 但沒按鈕時，空白太多，加 user_button?(user) 條件 */
+  margin-bottom: 55px;
 }
-
-.float_r_b {             /* 右下定位有效但會重疊 post 文字 => margin 排不開文字，就讓上方文字排開底部 */
+.float_r_b {
   margin: 8px;
-  width: 95px;           /* 元件寬度。若要使用 100% 父層寬度並不設定 margin 浮動排列仍會失效 */
+  width: 95px;
   float: right;
   position: absolute;
   right: 0px;
   bottom: 0px;
 }
-
-.profile_right {        /* 要訂高度，float_r_b 的屬性 bottom: 0px 才會生效，但不可定為 auto。對比 post_info 無需設定，查 */
-  min-height: 175px;    /* 有固定元件時，最小高度訂為 avatar 高度即可 */
+.profile_right {
+  min-height: 175px;
 }
-
-.user_button  a {        /*------ <%= link_to ~, class: "btn btn-default" %> 再外掛樣式，解決使用 post 動作且按鈕不變型  ------*/
-  min-width: 95px;       /* 等長按鈕，設定在父層盒子 => 字數變少時按鈕會變短 */
-  max-width: 95px;       /* 等長按鈕，設定在父層盒子 => 字數變少時按鈕會變短 */
+.user_button  a {
+  min-width: 95px;
+  max-width: 95px;
   font-size: 16px;
   color: #000;
   border: 1px solid #333;
@@ -447,7 +340,6 @@ input[type=checkbox], input[type=radio] {
   padding: 5px 5px;
   text-transform: capitalize;
 }
-
 .user_button  a:hover {
   background: #666;
   color: #fff;
@@ -458,18 +350,15 @@ input[type=checkbox], input[type=radio] {
   transition: all .2s linear;
 }
 
-/*------ User Comments  ------*/
-
+// User Comments
 .post {
   background-color: #f1f1f1;
   border-bottom: 1px solid #ddd;
   padding: 10px 10px;
 }
-
 .post_top {
   margin-left: 15px;
 }
-
 .comment {
   border: 1px solid #333;
   border-radius: 5px;
@@ -480,13 +369,10 @@ input[type=checkbox], input[type=radio] {
   margin: 10px 15px 0;
 }
 
-/*------ User Friends  ------*/
-
-/*------  重疊按鈕置中 block 加 margin auto 會和 titile_button 的 inline-block 衝突 ------*/
-
+// User Friends
 .friend_button a {
   display: block;                
-  margin: 0 auto;  /*------  一, 二行在盒內置中  ------*/
+  margin: 0 auto;
   width: 80px;
   font-size: 16px;
   color: #000;
@@ -495,7 +381,6 @@ input[type=checkbox], input[type=radio] {
   padding: 5px 5px;
   text-transform: capitalize;
 }
-
 .friend_button a:hover {
   background: #666;
   color: #fff;
@@ -505,7 +390,6 @@ input[type=checkbox], input[type=radio] {
   -o-transition: all .4s linear;
   transition: all .4s linear;
 }
-
 .watting_for_response, .friend_list {
   border-top: 1px solid #acacac;
   border-bottom: 1px solid #acacac;
@@ -513,7 +397,6 @@ input[type=checkbox], input[type=radio] {
   padding-bottom: 15px;
   min-height: 200px;
 }
-
 .friendship_request_area {
   border-top: 1px solid #acacac;
   border-bottom: 1px solid #acacac;
@@ -522,18 +405,15 @@ input[type=checkbox], input[type=radio] {
   min-height: 250px;
 }
 
-/*------ Admin Category  ------*/
-
+// Admin Category
 .category_table {
   border: 1px solid #acacac;
 }
-
 .table_title {
   background-color: #f3f3f3;
 }
 
-/*------ Admin User  ------*/
-
+// Admin User
 .admin_name {
   color: #333;
   text-transform: capitalize;
@@ -541,134 +421,158 @@ input[type=checkbox], input[type=radio] {
   font-weight: bold;
 }
 
-/*------ Session New  ------*/
-
+// Session New
 .devise_button {
-  position: relative;           /*------ 按鈕水平排列，中間不可夾 end 會失效  ------*/
+  position: relative;
   display: inline;
 }
-
-/*------ 手機版  ------*/
-
-@media screen and (min-width: 1024px) {
-  .menu-button,
-  .menu-button-checkbox {
-    display: none;
-  }
-}
-
 @media screen and (max-width: 1023px) {
-
-  .container {                  /*------ 小尺寸用滿螢幕寬度，checkbox 可設於右上  ------*/
+  // 小尺寸用滿螢幕寬度 v2
+  .container {
     width: auto;
-  }  
-
-  .menu-button-checkbox {       /*------ 注意要設定在容器裡面，menu-button 才靠得過來  ------*/
-    position: fixed;            /*------ 1~3 與 icon 對位右上角  ------*/
-    top: 0;
-    right: 5px;                 /*------ icon 離右邊 15px checkbox margin 10px，故再離右邊 5px  ------*/
-    width: 51px;                /*------ 對 icon 寸尺  ------*/
-    height: 44px;               /*------ 對 icon 寸尺，上述設定沒包好遊標會出現手指頭 ------*/
-    opacity: 0;                 /*------ 不透明將之隱藏  ------*/
-  }
-
-  .menu-button {
-    float: right;
-    font-size: 25px;            /*------ 設定 icon 尺寸  ------*/
-    line-height: 40px;
-    color: #000;                /*------ Nav 白底時要上色不然看不出來  ------*/
-    background: transparent;    /*------ 透明 ------*/
-    padding: 0 15px;            /*------ 設定與 container 相同 padding ------*/
-    border: 0;                  /*------ 預設有格線，去除 ------*/
-  }
-
-  .menu {
-    display: none;
-    margin-top: 0;
-    padding-left: 0;
-    position: fixed;
-    width: 150px;
-    height: 100%;
-    right: 0;
-    top: 43px;                   /*------ 對接 checkbox 的高度  ------*/
-/*    background: #fff; nav 白底色和 sidenav 底色很難配，不如不要設定 */
-  }
-
-  .menu li {
-    /*color: #fff; */
-    background-color: #939393;
-    border: 1px solid #333;
-    border-radius: 5px;
-    text-align: center;
-  }
-
-  .menu li a {
-    color: #fff;                 /*------ link 顏色對 a 不是對 li 設定  ------*/
-  }
-
-  .menu-button-checkbox:checked ~ .menu {
-    display: block;
-  }
-
-  .menu-button-checkbox:checked ~ .menu li {
-    display: block;
-  }
-
-  /* nav right 小尺寸裝置之位置設定 */
-  #profile {
-    right: 155px;               /* 排在 logout link 的左邊 */
-  }
-
-  .nav-right li {
-    right: 55px;
   }
 }
-
 @media screen and (max-width: 479px) {
-  .title_buttons {                      /* title_buttons RWD */
+  .title_buttons {
     float: left;
     margin: 20px 15px 20px 15px;
   }
 }
-
 @media screen and (max-width: 749px) {
   .post_user_info {
-    /*float: left;*/
     width: 100%;
     padding: 15px 0;
-    /*display: block;*/          /* 小尺寸取消 .post_user_info .post_info 水平排列 => 利用 100% 寬度去擠 post_info 即可 */
-    /*text-align: center;*/  /* 本來就有不要重復設定 */
     margin: 8px 0;
   }
-
   .post_info {
     width: 100%;
     padding: 15px 0;
-    /*display: block;*/          /* 小尺寸取消 .post_user_info .post_info 水平排列 => float + 100% 寬，不必再多此一舉 */
   }
 }
-
 @media screen and (max-width: 849px) {
-  .comment_user_info {           /* 檢查工具可見右側 margin 無法用盡，待修 */
-    /*float: left;*/             /* 本來就有不要重復設定 */
+  .comment_user_info {
     width: 100%;
     padding: 8px 0;
-    /*display: block;*/          /* 小尺寸取消 .comment_user_info .comment_info 水平排列 */
-    /*text-align: center;*/
-    /*margin: 8px 0;*/
   }
-
   .comment_info {
     width: 100%;
     padding: 8px 10px;
     text-align: center;
-    /*min-height: auto;*/        /* 小尺寸取消 最小高度，只設定 height 是無效的 => clearfix 設定了就不用多設這個 */
-    /*display: block;*/          /* 小尺寸取消 .comment_user_info .comment_info 水平排列 => 請愛用 float 與寬度設定 */
   }
 }
-
 @media screen and (max-width: 975px) {
   .profile_right {
     min-height: auto;
+  }
+}
+
+// header
+header {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 100;
+}
+.nav_margin {
+  height: 76px;
+}
+#logo {
+  float: left;
+  height: 50px;
+}
+.logo-item {
+  float: left;
+  font-size: 16px;
+}
+.logo-item li {
+  display: inline-block;
+  margin: 20px 16px 16px 8px;
+}
+#profile {
+  position: absolute;
+  right: 100px;
+  height: 50px;
+}
+.nav-right li {
+  position: absolute;
+  right: 0;
+  display: inline-block;  
+  font-size: 16px;
+  margin: 16px 16px 16px 8px;
+}
+
+// navbar_v2
+.navbar {
+  background-color: transparent;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  margin: 0 0 0 128px; // logo 位置留白
+  li {
+    display: inline-block;
+  }
+  a {
+    float: left;
+    display: block;
+    color: #337ab7;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .icon {
+    display: none;
+  }
+}
+
+// 縮小後的定位，navbar 隱藏，並顯示 icon
+@media screen and (max-width: 800px) {
+  .navbar li:not(:last-child) {display: none;}
+  .navbar .icon {
+    display: block; // 顯示 icon
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+  // 讓出空位給 icon
+  .nav-right li {
+    margin-right: 60px;
+  }
+  #profile {
+    margin-right: 45px;
+  }
+}
+
+// 按下 icon 後的設定(JS 加上 response 樣式)
+@media screen and (max-width: 800px) {
+  .navbar.responsive {
+    width: 100%;
+    z-index: 200;
+    position: fixed;
+    left: 0;
+    margin-left: 0;
+    background: rgb(189, 182, 182);
+  }
+  .navbar.responsive li.icon {
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
+  .navbar.responsive li {
+    display: block;
+    &:nth-child(odd) {
+      background: rgb(199, 194, 194);
+    }
+  }
+  .navbar.responsive a {
+    &:hover {
+      color: #eee;
+    }
+  }
+  .navbar a {
+    float: none;
+    text-align: left;
   }
 }
